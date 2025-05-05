@@ -3,6 +3,7 @@ import { useFonts, K2D_700Bold } from "@expo-google-fonts/k2d"
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import VisaoGeral from "../../components/VisaoGeral/VisaoGeral";
 import NavBarDashboard from "../../components/NavBarDashboard/NavBarDashboard";
+import ToggleTabs from "../../components/ToggleTabs/ToggleTabs";
 
 export default function Dashboard() {
 
@@ -20,6 +21,7 @@ export default function Dashboard() {
         <Text style={style.title}>Dashboard</Text>
         <VisaoGeral />
         <NavBarDashboard />
+        <ToggleTabs />
     </View>
   )
 }

@@ -26,7 +26,7 @@ const style = StyleSheet.create({
     novaEntrada: {
         backgroundColor: "#00CCCF",
         width: "47%",
-        height: 50,
+        height: 49,
         fontSize: 16,
         borderRadius: 5,
         verticalAlign: "middle",
