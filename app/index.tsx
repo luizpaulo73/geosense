@@ -1,6 +1,15 @@
 import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native"
+import { useFonts, K2D_400Regular, K2D_700Bold } from "@expo-google-fonts/k2d"
 
 export default function TelaInicial() {
+    const [fontsLoaded] = useFonts({
+        K2D_400Regular,
+        K2D_700Bold,
+      });
+    
+      if (!fontsLoaded) {
+        return null;
+      }
 
   return (
     <>
@@ -67,9 +76,11 @@ const style = StyleSheet.create({
         marginTop: 20,
     },
     btnLoginText: {
+        flex: 1,
         color: "#000",
         fontSize: 20,
         textAlign: "center",
         fontFamily: "K2D_700Bold",
+        textAlignVertical: "center",
     }
 })
