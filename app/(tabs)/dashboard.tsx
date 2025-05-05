@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useFonts, K2D_700Bold } from "@expo-google-fonts/k2d"
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import VisaoGeral from "../../components/VisaoGeral/VisaoGeral";
+import NavBarDashboard from "../../components/NavBarDashboard/NavBarDashboard";
 
 export default function Dashboard() {
 
@@ -18,6 +19,7 @@ export default function Dashboard() {
         <Cabecalho />
         <Text style={style.title}>Dashboard</Text>
         <VisaoGeral />
+        <NavBarDashboard />
     </View>
   )
 }
