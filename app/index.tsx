@@ -1,5 +1,6 @@
 import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native"
 import { useFonts, K2D_400Regular, K2D_700Bold } from "@expo-google-fonts/k2d"
+import { Link } from "expo-router";
 
 export default function TelaInicial() {
     const [fontsLoaded] = useFonts({
@@ -26,6 +27,9 @@ export default function TelaInicial() {
             <TouchableOpacity style={style.btnLogin}>
                 <Text style={style.btnLoginText}>Entrar</Text>
             </TouchableOpacity>
+            <Link href="/dashboard" style={{marginTop: 20}}>
+                <Text style={{color: "#fff", fontSize: 18, fontFamily: "K2D_700Bold"}}>dashboear</Text>
+            </Link>
         </View>
     </>
   )

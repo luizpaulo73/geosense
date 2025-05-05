@@ -4,6 +4,7 @@ import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import VisaoGeral from "../../components/VisaoGeral/VisaoGeral";
 import NavBarDashboard from "../../components/NavBarDashboard/NavBarDashboard";
 import ToggleTabs from "../../components/ToggleTabs/ToggleTabs";
+import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
 
 export default function Dashboard() {
 
@@ -22,6 +23,7 @@ export default function Dashboard() {
         <VisaoGeral />
         <NavBarDashboard />
         <ToggleTabs />
+        <EntradasRecentes />
     </View>
   )
 }
