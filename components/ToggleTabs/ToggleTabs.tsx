@@ -34,6 +34,7 @@ const style = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginTop: 20,
+        borderRadius: 5,
     },
     tab: {
         padding: 10,
