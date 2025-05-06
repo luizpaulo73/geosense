@@ -22,13 +22,13 @@ export default function TabsLayout() {
             }}
         />
         <Tabs.Screen
-            name="aa"
+            name="mapa"
             options={{
-                title :"aa", 
+                title :"Mapa", 
                 
                 tabBarIcon: ({ focused }) => (
                     <Image
-                      source={require('../../assets/tabs/dashboard.png')}
+                      source={require('../../assets/tabs/mapa.png')}
                       style={{
                         width: 24,
                         height: 24,

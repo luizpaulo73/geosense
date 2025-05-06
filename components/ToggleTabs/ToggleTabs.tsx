@@ -37,7 +37,7 @@ const style = StyleSheet.create({
         borderRadius: 5,
     },
     tab: {
-        padding: 10,
+        padding: 5,
         borderRadius: 5,
         margin: 5,
         width: "45%",
