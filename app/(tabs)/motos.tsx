@@ -1,20 +1,19 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native"
-import Setor from "../../components/Setor/Setor"
-import Cabecalho from "../../components/Cabecalho/Cabecalho"
-import Disponibilidade from "../../components/Disponibilidade/Disponibilidade"
+import { StyleSheet, View, Text, TextInput } from "react-native";
+import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
+import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
 
-export default function Mapa() {
+export default function motos() {
 
     const [openSetor, setOpenSetor] = useState(false);
     const [valueSetor, setValueSetor] = useState(null);
     const [itemsSetor, setItemsSetor] = useState([
-    { label: 'JavaScript', value: 'js' },
-    { label: 'Python', value: 'python' },
-    { label: 'Java', value: 'java' }
-    ]);
-
+        { label: 'JavaScript', value: 'js' },
+        { label: 'Python', value: 'python' },
+        { label: 'Java', value: 'java' }
+        ]);
+    
     const [openEstado, setOpenEstado] = useState(false);
     const [valueEstado, setValueEstado] = useState(null);
     const [itemsEstado, setItemsEstado] = useState([
@@ -22,12 +21,12 @@ export default function Mapa() {
         { label: 'Ocupado', value: 'ocupado' }
     ]);
 
-    return (
-        <View style={style.container}>
+  return (
+    <View style={style.container}>
         <Cabecalho />
         <Text style={style.title}>Mapa do Pátio</Text>
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
-            <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+        <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
             <DropDownPicker
                 open={openSetor}
                 value={valueSetor}
@@ -56,20 +55,8 @@ export default function Mapa() {
                 zIndex={1000}
             />
         </View>
-        
-
-        <ScrollView
-            style={style.mapa}
-            contentContainerStyle={[style.scrollContent, { alignItems: "center" }]}
-            showsVerticalScrollIndicator={false}>
-          
-          
-            <Disponibilidade />
-            <Setor area={"IOT"}/>
-            <Setor area={"Motor Defeituoso"}/>
-            <Setor area={"Danos Estruturais"}/>
-        </ScrollView>
-        </View>
+        <EntradasRecentes />
+    </View>
   )
 }
 
@@ -84,17 +71,6 @@ const style = StyleSheet.create({
         color: "#fff",
         width: "90%",
         fontFamily: "K2D_700Bold",
-    },
-    mapa: {
-        width: "100%",
-        height: "100%",
-        marginTop: 10,
-        paddingBottom: 20,
-    },
-    scrollContent: {
-        paddingBottom: 40,
-        alignItems: "center",
-        gap: 15,
     },
     searchBar: {
         width: "90%",

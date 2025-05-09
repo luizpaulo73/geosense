@@ -28,6 +28,7 @@ const style = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: "#94A3B8",
         width: "90%",
+        borderRadius: 5,
     },
     textSetor: {
         color: "#fff",
