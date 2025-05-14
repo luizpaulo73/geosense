@@ -11,7 +11,7 @@ export default function NavBarDashboard() {
   return (
     <View style={style.container}>
         <Link href="/cadastro" style={style.novaEntrada}>+ Nova Entrada</Link>
-        <Link href="/dashboard" style={style.verMapa}>Ver Mapa</Link>
+        <Link href="/mapa" style={style.verMapa}>Ver Mapa</Link>
     </View>
   )
 }

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native"
 import DropDownPicker from "react-native-dropdown-picker"
+import { Checkbox } from "react-native-paper";
 
 export default function FormCadastroMoto() {
 
+    const [isSelected, setSelection] = useState(false);
     const [openSetor, setOpenSetor] = useState(false);
     const [valueSetor, setValueSetor] = useState(null);
     const [itemsSetor, setItemsSetor] = useState([
@@ -36,16 +38,24 @@ export default function FormCadastroMoto() {
                 zIndex={2000}
             />
             <View style={{flexDirection: "row", justifyContent: "space-between", width: "90%"}}>
-                <Text style={style.labelInput}>Placa</Text>
-                <View>
-                   <Text style={style.labelInput}>Moto sem Placa</Text>
-                   <TouchableOpacity />
+                <Text style={[style.labelInput, {width: "50%"}]}>Placa</Text>
+                <View style={{flexDirection: "row", width: "50%", justifyContent: "flex-end", alignItems: "center"}}>
+                   <Text style={style.semPlacaText}>Moto sem Placa</Text>
+                   <Checkbox
+                        status={isSelected ? 'checked' : 'unchecked'}
+                        onPress={() => {
+                        setSelection(!isSelected);
+                        }}
+                        color="#00CCCF"
+                    />
                 </View>
             </View>
             <TextInput placeholder="ABC-1234" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
-
-            <Text style={style.labelInput}>Número de Chassi</Text>
-            <TextInput placeholder="XXXYYYYYYZ1234567" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+            
+            {isSelected ? <>
+                <Text style={style.labelInput}>Número de Chassi</Text>
+                <TextInput placeholder="XXXYYYYYYZ1234567" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+            </> : null}
 
             <Text style={style.labelInput}>Selecione o Problema da Moto</Text>
             <DropDownPicker
@@ -62,7 +72,7 @@ export default function FormCadastroMoto() {
                 zIndex={1000}
             />
             <TouchableOpacity style={style.btnLogin}>
-                <Text style={style.btnLoginText}>Entrar</Text>
+                <Text style={style.btnLoginText}>Cadastrar</Text>
             </TouchableOpacity>
         </View>
     )
@@ -104,8 +114,8 @@ const style = StyleSheet.create({
     labelInput: {
         color: "#fff",
         fontSize: 18,
-        marginTop: 10,
         fontFamily: "K2D_700Bold",
+        width: "90%",
     },
     btnLogin: {
         backgroundColor: "#00CCCF",
@@ -121,5 +131,10 @@ const style = StyleSheet.create({
         textAlign: "center",
         fontFamily: "K2D_700Bold",
         textAlignVertical: "center",
-    }
+    },
+    semPlacaText: {
+        color: "#94A3B8",
+        fontSize: 14,
+        fontFamily: "K2D_700Bold",
+    },
 })
