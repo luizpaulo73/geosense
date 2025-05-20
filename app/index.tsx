@@ -3,14 +3,15 @@ import { useFonts, K2D_400Regular, K2D_700Bold } from "@expo-google-fonts/k2d"
 import { Link } from "expo-router";
 
 export default function TelaInicial() {
+    
     const [fontsLoaded] = useFonts({
         K2D_400Regular,
         K2D_700Bold,
-      });
+    });
     
-      if (!fontsLoaded) {
+    if (!fontsLoaded) {
         return null;
-      }
+    }
 
   return (
     <>

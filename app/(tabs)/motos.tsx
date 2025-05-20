@@ -1,8 +1,8 @@
 import { StyleSheet, View, Text, TextInput } from "react-native";
-import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
+import BaseTelas from "../../components/BaseTelas/BaseTelas";
 
 export default function motos() {
 
@@ -21,51 +21,45 @@ export default function motos() {
         { label: 'Ocupado', value: 'ocupado' }
     ]);
 
-  return (
-    <View style={style.container}>
-        <Cabecalho />
-        <Text style={style.title}>Mapa do Pátio</Text>
-        <View style={{gap: 10, width: "100%", alignItems: "center"}}>
-        <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
-            <DropDownPicker
-                open={openSetor}
-                value={valueSetor}
-                items={itemsSetor}
-                setOpen={setOpenSetor}
-                setValue={setValueSetor}
-                setItems={setItemsSetor}
-                placeholder="Todos os Setores"
-                style={style.dropdown}
-                dropDownContainerStyle={style.dropdownContainer}
-                textStyle={style.text}
-                zIndex={2000}
-            />
+    return (
+        <BaseTelas>
+            <Text style={style.title}>Mapa do Pátio</Text>
+            <View style={{gap: 10, width: "100%", alignItems: "center"}}>
+            <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+                <DropDownPicker
+                    open={openSetor}
+                    value={valueSetor}
+                    items={itemsSetor}
+                    setOpen={setOpenSetor}
+                    setValue={setValueSetor}
+                    setItems={setItemsSetor}
+                    placeholder="Todos os Setores"
+                    style={style.dropdown}
+                    dropDownContainerStyle={style.dropdownContainer}
+                    textStyle={style.text}
+                    zIndex={2000}
+                />
 
-            <DropDownPicker
-                open={openEstado}
-                value={valueEstado}
-                items={itemsEstado}
-                setOpen={setOpenEstado}
-                setValue={setValueEstado}
-                setItems={setItemsEstado}
-                placeholder="Estado"
-                style={style.dropdown}
-                dropDownContainerStyle={style.dropdownContainer}
-                textStyle={style.text}
-                zIndex={1000}
-            />
-        </View>
-        <EntradasRecentes />
-    </View>
-  )
+                <DropDownPicker
+                    open={openEstado}
+                    value={valueEstado}
+                    items={itemsEstado}
+                    setOpen={setOpenEstado}
+                    setValue={setValueEstado}
+                    setItems={setItemsEstado}
+                    placeholder="Estado"
+                    style={style.dropdown}
+                    dropDownContainerStyle={style.dropdownContainer}
+                    textStyle={style.text}
+                    zIndex={1000}
+                />
+            </View>
+            <EntradasRecentes />
+        </BaseTelas>
+    )
 }
 
 const style = StyleSheet.create({
-    container: {
-        backgroundColor: "#020817",
-        flex: 1,
-        alignItems: "center",
-    },
     title: {
         fontSize: 24,
         color: "#fff",

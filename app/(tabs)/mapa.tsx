@@ -1,9 +1,9 @@
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native"
 import Setor from "../../components/Setor/Setor"
-import Cabecalho from "../../components/Cabecalho/Cabecalho"
 import Disponibilidade from "../../components/Disponibilidade/Disponibilidade"
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
+import BaseTelas from "../../components/BaseTelas/BaseTelas";
 
 export default function Mapa() {
 
@@ -23,62 +23,56 @@ export default function Mapa() {
     ]);
 
     return (
-        <View style={style.container}>
-        <Cabecalho />
-        <Text style={style.title}>Mapa do Pátio</Text>
-        <View style={{gap: 10, width: "100%", alignItems: "center"}}>
-            <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
-            <DropDownPicker
-                open={openSetor}
-                value={valueSetor}
-                items={itemsSetor}
-                setOpen={setOpenSetor}
-                setValue={setValueSetor}
-                setItems={setItemsSetor}
-                placeholder="Todos os Setores"
-                style={style.dropdown}
-                dropDownContainerStyle={style.dropdownContainer}
-                textStyle={style.text}
-                zIndex={2000}
-            />
+        <BaseTelas>
+            <Text style={style.title}>Mapa do Pátio</Text>
+            <View style={{gap: 10, width: "100%", alignItems: "center"}}>
+                <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+                <DropDownPicker
+                    open={openSetor}
+                    value={valueSetor}
+                    items={itemsSetor}
+                    setOpen={setOpenSetor}
+                    setValue={setValueSetor}
+                    setItems={setItemsSetor}
+                    placeholder="Todos os Setores"
+                    style={style.dropdown}
+                    dropDownContainerStyle={style.dropdownContainer}
+                    textStyle={style.text}
+                    zIndex={2000}
+                />
 
-            <DropDownPicker
-                open={openEstado}
-                value={valueEstado}
-                items={itemsEstado}
-                setOpen={setOpenEstado}
-                setValue={setValueEstado}
-                setItems={setItemsEstado}
-                placeholder="Estado"
-                style={style.dropdown}
-                dropDownContainerStyle={style.dropdownContainer}
-                textStyle={style.text}
-                zIndex={1000}
-            />
-        </View>
-        
+                <DropDownPicker
+                    open={openEstado}
+                    value={valueEstado}
+                    items={itemsEstado}
+                    setOpen={setOpenEstado}
+                    setValue={setValueEstado}
+                    setItems={setItemsEstado}
+                    placeholder="Estado"
+                    style={style.dropdown}
+                    dropDownContainerStyle={style.dropdownContainer}
+                    textStyle={style.text}
+                    zIndex={1000}
+                />
+            </View>
+            
 
-        <ScrollView
-            style={style.mapa}
-            contentContainerStyle={[style.scrollContent, { alignItems: "center" }]}
-            showsVerticalScrollIndicator={false}>
-          
-          
-            <Disponibilidade />
-            <Setor area={"IOT"}/>
-            <Setor area={"Motor Defeituoso"}/>
-            <Setor area={"Danos Estruturais"}/>
-        </ScrollView>
-        </View>
+            <ScrollView
+                style={style.mapa}
+                contentContainerStyle={[style.scrollContent, { alignItems: "center" }]}
+                showsVerticalScrollIndicator={false}>
+            
+            
+                <Disponibilidade />
+                <Setor area={"IOT"}/>
+                <Setor area={"Motor Defeituoso"}/>
+                <Setor area={"Danos Estruturais"}/>
+            </ScrollView>
+        </BaseTelas>
   )
 }
 
 const style = StyleSheet.create({
-    container: {
-        backgroundColor: "#020817",
-        flex: 1,
-        alignItems: "center",
-    },
     title: {
         fontSize: 24,
         color: "#fff",

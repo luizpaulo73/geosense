@@ -1,40 +1,34 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useFonts, K2D_700Bold } from "@expo-google-fonts/k2d"
-import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import VisaoGeral from "../../components/VisaoGeral/VisaoGeral";
 import NavBarDashboard from "../../components/NavBarDashboard/NavBarDashboard";
 import ToggleTabs from "../../components/ToggleTabs/ToggleTabs";
 import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
+import BaseTelas from "../../components/BaseTelas/BaseTelas";
 
 export default function Dashboard() {
 
-  const [fontsLoaded] = useFonts({
-    K2D_700Bold,
-  });
+    const [fontsLoaded] = useFonts({
+        K2D_700Bold,
+    });
 
-  if (!fontsLoaded) {
-    return null;
-  }
+    if (!fontsLoaded) {
+        return null;
+    }
 
-  return (
-    <View style={style.container}>
-        <Cabecalho />
-        <Text style={style.title}>Dashboard</Text>
-        <VisaoGeral />
-        <NavBarDashboard />
-        <ToggleTabs />
-        <EntradasRecentes />
-    </View>
-  )
+    return (
+        <BaseTelas>
+            <Text style={style.title}>Dashboard</Text>
+            <VisaoGeral />
+            <NavBarDashboard />
+            <ToggleTabs />
+            <EntradasRecentes />
+        </BaseTelas>
+    )
 }
 
 
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: "#020817"
-    },
     title: {
       fontSize: 24,
       color: "#fff",

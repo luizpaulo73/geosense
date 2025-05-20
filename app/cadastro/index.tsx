@@ -1,20 +1,10 @@
-import { View, StyleSheet } from "react-native"
-import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import FormCadastroMoto from "../../components/FormCadastroMoto/FormCadastroMoto";
+import BaseTelas from "../../components/BaseTelas/BaseTelas";
 
 export default function cadastro() {
     return (
-        <View style={style.container}>
-            <Cabecalho />
+        <BaseTelas>
             <FormCadastroMoto />
-        </View>
+        </BaseTelas>
     )
 }
-
-const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: "#020817"
-    },
-});
