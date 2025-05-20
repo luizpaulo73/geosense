@@ -4,9 +4,10 @@
     "slug": "Geosense",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logos/logo-splash.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "scheme":"Geosense",
     "splash": {
       "image": "./assets/logos/logo-splash.png",
       "resizeMode": "contain",
