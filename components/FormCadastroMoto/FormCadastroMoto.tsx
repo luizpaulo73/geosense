@@ -1,5 +1,6 @@
+import { Link } from "expo-router";
 import { useState } from "react";
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, TextInput, StyleSheet, Image } from "react-native"
 import DropDownPicker from "react-native-dropdown-picker"
 import { Checkbox } from "react-native-paper";
 
@@ -23,7 +24,12 @@ export default function FormCadastroMoto() {
 
     return (
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
-            <Text style={style.labelInput}>Selecione o Modelo da Moto</Text>
+            <View style={{flexDirection: "row", alignItems: "center", gap: 5, width: "90%"}}>
+                <Link href={"/dashboard"}>
+                    <Image source={require('../../assets/logos/voltar.png')} style={style.arrow} />
+                </Link>
+                <Text style={style.labelInput}>Selecione o Modelo da Moto</Text>
+            </View>
             <DropDownPicker
                 open={openSetor}
                 value={valueSetor}
@@ -71,9 +77,9 @@ export default function FormCadastroMoto() {
                 textStyle={style.text}
                 zIndex={1000}
             />
-            <TouchableOpacity style={style.btnLogin}>
-                <Text style={style.btnLoginText}>Cadastrar</Text>
-            </TouchableOpacity>
+            <Link href={"/selecionarMapa/Motor"} style={style.btnLogin}>
+                <Text style={style.btnLoginText}>Selecionar Vaga</Text>
+            </Link>
         </View>
     )
 }
@@ -137,4 +143,8 @@ const style = StyleSheet.create({
         fontSize: 14,
         fontFamily: "K2D_700Bold",
     },
+    arrow: {
+        width: 25,
+        height: 15
+    }
 })
