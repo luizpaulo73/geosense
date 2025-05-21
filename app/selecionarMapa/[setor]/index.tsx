@@ -8,7 +8,7 @@ export default function SelecionarMapa() {
     const setorString = Array.isArray(setor) ? setor[0] : setor || '';
 
     return (
-        <BaseTelas titulo=''>
+        <BaseTelas titulo='' botaoVoltar="/cadastro">
             <Setor area={setorString}/>
         </BaseTelas>
     )

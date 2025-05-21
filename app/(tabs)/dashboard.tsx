@@ -16,7 +16,7 @@ export default function Dashboard() {
     }
 
     return (
-        <BaseTelas titulo='Dashboard'>
+        <BaseTelas titulo='Dashboard' botaoVoltar="">
             <VisaoGeral />
             <NavBarDashboard />
             <ToggleTabs />

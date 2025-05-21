@@ -22,7 +22,7 @@ export default function motos() {
     ]);
 
     return (
-        <BaseTelas titulo="Lista de Motos">
+        <BaseTelas titulo="Lista de Motos" botaoVoltar="">
             <View style={{gap: 10, width: "100%", alignItems: "center"}}>
             <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
                 <DropDownPicker

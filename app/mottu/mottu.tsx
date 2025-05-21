@@ -8,7 +8,7 @@ const { width } = Dimensions.get("window");
 
 export default function mottu() {
     return (
-        <BaseTelas titulo="">
+        <BaseTelas titulo="" botaoVoltar="/motos">
             <Text style={style.title}>Mottu Sport</Text>
             <Image
                 source={require("../../assets/motos/mottu-sport.png")}

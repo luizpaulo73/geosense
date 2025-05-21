@@ -10,7 +10,7 @@ export default function participantes() {
     };    
 
     return (
-        <BaseTelas titulo="Participantes">
+        <BaseTelas titulo="Participantes" botaoVoltar="/conta">
             {dados.map((dado, index) => (
                 <CardParticipante dados={dado} key={index}/>
             ))}

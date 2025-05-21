@@ -23,7 +23,7 @@ export default function Mapa() {
     ]);
 
     return (
-        <BaseTelas titulo="Mapa do Pátio">
+        <BaseTelas titulo="Mapa do Pátio" botaoVoltar="">
             <View style={{gap: 10, width: "100%", alignItems: "center"}}>
                 <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
                 <DropDownPicker

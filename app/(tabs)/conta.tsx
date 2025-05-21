@@ -5,7 +5,7 @@ import { Link } from "expo-router";
 
 export default function conta() {
     return (
-        <BaseTelas titulo='Conta'>
+        <BaseTelas titulo='Conta' botaoVoltar="">
             <View style={style.infoConta}>
                 <Text style={style.info}>João Silva</Text>
                 <Text style={style.cargo}>Mecanico</Text>
