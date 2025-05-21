@@ -3,24 +3,19 @@ import { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Image } from "react-native"
 import DropDownPicker from "react-native-dropdown-picker"
 import { Checkbox } from "react-native-paper";
+import setores from "../../data/options/tipoProblema.json";
+import modelo from "../../data/options/modeloMoto.json";
 
 export default function FormCadastroMoto() {
 
     const [isSelected, setSelection] = useState(false);
-    const [openSetor, setOpenSetor] = useState(false);
-    const [valueSetor, setValueSetor] = useState(null);
-    const [itemsSetor, setItemsSetor] = useState([
-        { label: 'JavaScript', value: 'js' },
-        { label: 'Python', value: 'python' },
-        { label: 'Java', value: 'java' }
-    ]);
+    const [openMoto, setOpenMoto] = useState(false);
+    const [valueMoto, setValueMoto] = useState(null);
+    const [itemsMoto, setItemsMoto] = useState(modelo);
     
-    const [openEstado, setOpenEstado] = useState(false);
-    const [valueEstado, setValueEstado] = useState(null);
-    const [itemsEstado, setItemsEstado] = useState([
-        { label: 'Disponível', value: 'disponivel' },
-        { label: 'Ocupado', value: 'ocupado' }
-    ]);
+    const [openProblema, setOpenProblema] = useState(false);
+    const [valueProblema, setValueProblema] = useState(null);
+    const [itemsProblema, setItemsProblema] = useState(setores);
 
     return (
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
@@ -31,12 +26,12 @@ export default function FormCadastroMoto() {
                 <Text style={style.labelInput}>Selecione o Modelo da Moto</Text>
             </View>
             <DropDownPicker
-                open={openSetor}
-                value={valueSetor}
-                items={itemsSetor}
-                setOpen={setOpenSetor}
-                setValue={setValueSetor}
-                setItems={setItemsSetor}
+                open={openMoto}
+                value={valueMoto}
+                items={itemsMoto}
+                setOpen={setOpenMoto}
+                setValue={setValueMoto}
+                setItems={setItemsMoto}
                 placeholder="Selecione o Modelo"
                 style={style.dropdown}
                 dropDownContainerStyle={style.dropdownContainer}
@@ -65,12 +60,12 @@ export default function FormCadastroMoto() {
 
             <Text style={style.labelInput}>Selecione o Problema da Moto</Text>
             <DropDownPicker
-                open={openEstado}
-                value={valueEstado}
-                items={itemsEstado}
-                setOpen={setOpenEstado}
-                setValue={setValueEstado}
-                setItems={setItemsEstado}
+                open={openProblema}
+                value={valueProblema}
+                items={itemsProblema}
+                setOpen={setOpenProblema}
+                setValue={setValueProblema}
+                setItems={setItemsProblema}
                 placeholder="Selecione o Problema"
                 style={style.dropdown}
                 dropDownContainerStyle={style.dropdownContainer}

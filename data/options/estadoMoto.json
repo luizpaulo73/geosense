@@ -1,0 +1,4 @@
+[
+    { "label": "Disponível", "value": "disponivel" },
+    { "label": "Em Manutenção", "value": "manutencao" }
+]

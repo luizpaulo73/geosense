@@ -4,23 +4,18 @@ import Disponibilidade from "../../components/Disponibilidade/Disponibilidade"
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import BaseTelas from "../../components/BaseTelas/BaseTelas";
+import setores from "../../data/options/tipoProblema.json";
+import estadoMoto from "../../data/options/estadoMoto.json";
 
 export default function Mapa() {
 
     const [openSetor, setOpenSetor] = useState(false);
     const [valueSetor, setValueSetor] = useState(null);
-    const [itemsSetor, setItemsSetor] = useState([
-    { label: 'JavaScript', value: 'js' },
-    { label: 'Python', value: 'python' },
-    { label: 'Java', value: 'java' }
-    ]);
+    const [itemsSetor, setItemsSetor] = useState(setores);
 
     const [openEstado, setOpenEstado] = useState(false);
     const [valueEstado, setValueEstado] = useState(null);
-    const [itemsEstado, setItemsEstado] = useState([
-        { label: 'Disponível', value: 'disponivel' },
-        { label: 'Ocupado', value: 'ocupado' }
-    ]);
+    const [itemsEstado, setItemsEstado] = useState(estadoMoto);
 
     return (
         <BaseTelas titulo="Mapa do Pátio" botaoVoltar="">
