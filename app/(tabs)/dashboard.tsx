@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import { useFonts, K2D_700Bold } from "@expo-google-fonts/k2d"
 import VisaoGeral from "../../components/VisaoGeral/VisaoGeral";
 import NavBarDashboard from "../../components/NavBarDashboard/NavBarDashboard";
@@ -17,8 +16,7 @@ export default function Dashboard() {
     }
 
     return (
-        <BaseTelas>
-            <Text style={style.title}>Dashboard</Text>
+        <BaseTelas titulo='Dashboard'>
             <VisaoGeral />
             <NavBarDashboard />
             <ToggleTabs />
@@ -26,13 +24,3 @@ export default function Dashboard() {
         </BaseTelas>
     )
 }
-
-
-const style = StyleSheet.create({
-    title: {
-      fontSize: 24,
-      color: "#fff",
-      width: "90%",
-      fontFamily: "K2D_700Bold",
-    }
-})

@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native"
+import { ScrollView, StyleSheet, TextInput, View } from "react-native"
 import Setor from "../../components/Setor/Setor"
 import Disponibilidade from "../../components/Disponibilidade/Disponibilidade"
 import { useState } from "react";
@@ -23,8 +23,7 @@ export default function Mapa() {
     ]);
 
     return (
-        <BaseTelas>
-            <Text style={style.title}>Mapa do Pátio</Text>
+        <BaseTelas titulo="Mapa do Pátio">
             <View style={{gap: 10, width: "100%", alignItems: "center"}}>
                 <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
                 <DropDownPicker
@@ -73,12 +72,6 @@ export default function Mapa() {
 }
 
 const style = StyleSheet.create({
-    title: {
-        fontSize: 24,
-        color: "#fff",
-        width: "90%",
-        fontFamily: "K2D_700Bold",
-    },
     mapa: {
         width: "100%",
         height: "100%",

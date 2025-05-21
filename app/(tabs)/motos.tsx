@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import { StyleSheet, View, TextInput } from "react-native";
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
@@ -22,8 +22,7 @@ export default function motos() {
     ]);
 
     return (
-        <BaseTelas>
-            <Text style={style.title}>Mapa do Pátio</Text>
+        <BaseTelas titulo="Lista de Motos">
             <View style={{gap: 10, width: "100%", alignItems: "center"}}>
             <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
                 <DropDownPicker
@@ -60,12 +59,6 @@ export default function motos() {
 }
 
 const style = StyleSheet.create({
-    title: {
-        fontSize: 24,
-        color: "#fff",
-        width: "90%",
-        fontFamily: "K2D_700Bold",
-    },
     searchBar: {
         width: "90%",
         height: 45,
