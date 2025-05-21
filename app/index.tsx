@@ -1,4 +1,4 @@
-import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native"
+import { Text, View, Image, StyleSheet, TextInput } from "react-native"
 import { useFonts, K2D_400Regular, K2D_700Bold } from "@expo-google-fonts/k2d"
 import { Link } from "expo-router";
 
@@ -25,11 +25,8 @@ export default function TelaInicial() {
             <Text style={style.labelInput} >Senha</Text>
             <TextInput placeholder="Digite sua Senha" style={style.input} placeholderTextColor={"#94A3B8"}/>
 
-            <TouchableOpacity style={style.btnLogin}>
+            <Link href="/dashboard" style={style.btnLogin}>
                 <Text style={style.btnLoginText}>Entrar</Text>
-            </TouchableOpacity>
-            <Link href="/dashboard" style={{marginTop: 20}}>
-                <Text style={{color: "#fff", fontSize: 18, fontFamily: "K2D_700Bold"}}>dashboear</Text>
             </Link>
         </View>
     </>
