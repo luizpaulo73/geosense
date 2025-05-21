@@ -8,8 +8,7 @@ const { width } = Dimensions.get("window");
 
 export default function mottu() {
     return (
-        <BaseTelas titulo="" botaoVoltar="/motos">
-            <Text style={style.title}>Mottu Sport</Text>
+        <BaseTelas titulo="Mottu Sport" botaoVoltar="/motos">
             <Image
                 source={require("../../assets/motos/mottu-sport.png")}
                 style={style.image}
@@ -23,12 +22,6 @@ export default function mottu() {
 }
 
 const style = StyleSheet.create({
-    title: {
-        fontSize: 24,
-        color: "#fff",
-        width: "90%",
-        fontFamily: "K2D_700Bold",
-    },
     image: {
         width: width / 1.1,
         height: width / 1.1,

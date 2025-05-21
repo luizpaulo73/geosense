@@ -23,7 +23,7 @@ export default function EntradasRecentes() {
                     </View>
                     <View style={{flexDirection: "row", justifyContent: "space-between", width: "95%"}}>
                         <Text style={style.textEntrada}>Entrada: {item.entrada}</Text>
-                        <Link href={""} style={style.textDetalhes}>Detalhes</Link>
+                        <Link href={"/mottu"} style={style.textDetalhes}>Detalhes</Link>
                     </View>
                 </View>
             )}
