@@ -20,9 +20,6 @@ export default function FormCadastroMoto() {
     return (
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
             <View style={{flexDirection: "row", alignItems: "center", gap: 5, width: "90%"}}>
-                <Link href={"/dashboard"}>
-                    <Image source={require('../../assets/logos/voltar.png')} style={style.arrow} />
-                </Link>
                 <Text style={style.labelInput}>Selecione o Modelo da Moto</Text>
             </View>
             <DropDownPicker

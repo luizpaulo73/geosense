@@ -3,7 +3,7 @@ import BaseTelas from "../../components/BaseTelas/BaseTelas";
 
 export default function cadastro() {
     return (
-        <BaseTelas titulo="" botaoVoltar="">
+        <BaseTelas titulo="Cadastro de Moto" botaoVoltar="/dashboard">
             <FormCadastroMoto />
         </BaseTelas>
     )
