@@ -16,7 +16,7 @@ export default function CardParticipante({dados} : CardParticipanteProps) {
 
     const abrirLink = (url: string) => {
         Linking.openURL(url)
-    };    
+    };
 
     return (
         <View style={style.card}>
@@ -34,7 +34,10 @@ export default function CardParticipante({dados} : CardParticipanteProps) {
                     </View>
                 </View>
             </View>
-            <Image style={style.imgParticipante} source={require('../../assets/tabs/conta.png')}/>
+            {dados.foto === "enzo.jpg" ? <Image style={style.imgParticipante} source={require(`../../assets/participantes/enzo.jpg`)}/> : <></>}
+            {dados.foto === "luiz.jpg" ? <Image style={style.imgParticipante} source={require(`../../assets/participantes/luiz.jpg`)}/> : <></>}
+            {dados.foto === "rafael.jpg" ? <Image style={style.imgParticipante} source={require(`../../assets/participantes/rafael.jpg`)}/> : <></>}
+            
         </View>
     )
 }
@@ -45,7 +48,7 @@ const style = StyleSheet.create({
         width: "90%",
         height: 150,
         borderRadius: 5,
-        padding: 10,
+        paddingLeft: 10,
         marginTop: 10,
         borderTopWidth: 0.5,
         borderRightWidth: 0.5,
@@ -78,7 +81,10 @@ const style = StyleSheet.create({
         paddingLeft: 5
     },
     imgParticipante: {
-        width: "34%",
-        height: "90%",
+        width: 125,
+        height: 125,
+        borderRadius: 100,
+        borderWidth: 1,
+        borderColor: "#00CCCF",
     }
 })

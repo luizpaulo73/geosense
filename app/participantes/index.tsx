@@ -1,7 +1,7 @@
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import BaseTelas from "../../components/BaseTelas/BaseTelas";
 import CardParticipante from "../../components/CardParticipante/CardParticipante";
-import dados from "../../data/participantes.json"
+import dados from "../../data/participantes.json";
 
 export default function participantes() {
 
