@@ -10,7 +10,7 @@
     "scheme": "Geosense",
     "splash": {
       "image": "./assets/logos/logo.png",
-      "resizeMode": "cover",
+      "resizeMode": "contain",
       "backgroundColor": "#020817"
     },
     "ios": {
