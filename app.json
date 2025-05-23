@@ -4,13 +4,13 @@
     "slug": "Geosense",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logos/logo-splash.png",
+    "icon": "./assets/logos/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "scheme":"Geosense",
+    "scheme": "Geosense",
     "splash": {
-      "image": "./assets/logos/logo-splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/logos/logo.png",
+      "resizeMode": "cover",
       "backgroundColor": "#020817"
     },
     "ios": {
@@ -18,17 +18,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logos/logo-splash.png",
+        "foregroundImage": "./assets/logos/logo.png",
         "backgroundColor": "#020817"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/logos/logo-splash.png"
+      "favicon": "./assets/logos/logo.png"
     },
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ]
+    "plugins": ["expo-router", "expo-font"]
   }
 }

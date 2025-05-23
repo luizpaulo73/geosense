@@ -16,7 +16,7 @@ export default function TelaInicial() {
   return (
     <>
         <View style={style.container}>
-            <Image source={require("../assets/logos/logo-splash.png")} style={style.logo}/>
+            <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
             <Text style={style.welcomeText}>Bem Vindo</Text>
 
             <Text style={style.labelInput} >Login</Text>
