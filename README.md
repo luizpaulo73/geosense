@@ -3,13 +3,13 @@
 ## Integrantes
 
 - **Nome:** Enzo G. Marsola  
-  **RM:** 556310
+  **RM:** 556310 - 2TDSPK
 
 - **Nome:** Luiz Paulo F. Fernandes  
-  **RM:** 555497
+  **RM:** 555497 - 2TDSPF
   
 - **Nome:** Rafael de Souza Pinto  
-  **RM:** 555130
+  **RM:** 555130 - 2TDSPY
 
 ### Link do Design: [Figma](https://www.figma.com/design/bUCpf1dUyL4ZcRE0DPgTPP/Geosense?node-id=0-1&t=C2KvD3WNGqhd849p-1)
 
