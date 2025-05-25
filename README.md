@@ -16,6 +16,8 @@
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;O GeoSense é um aplicativo mobile desenvolvido com Expo e React Native para auxiliar na gestão inteligente de pátios de motos. A solução oferece registro e localização em tempo real, alocação automática com base em visão computacional e monitoramento completo via mapa interativo, tudo de forma simples e intuitiva. Voltado para mecânicos e gestores, o app permite identificar problemas nas motos, encontrar vagas automaticamente e manter total visibilidade do pátio — direto da palma da mão.
 
+## Link do Figma: https://www.figma.com/design/bUCpf1dUyL4ZcRE0DPgTPP/Geosense?node-id=0-1&t=C2KvD3WNGqhd849p-1
+
 ## Como Rodar o Projeto Localmente
 
 ## ⚙️ Pré-requisitos
