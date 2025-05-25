@@ -22,8 +22,8 @@
 
 ## ⚙️ Pré-requisitos
 
-- Node.js (versão recomendada: 18.x)
-- Expo CLI (instale com `npm install -g expo-cli`)
+- Node.js
+- Expo CLI
 - Emulador Android/iOS ou aplicativo **Expo Go**
 
 ## 🚀 Instalação
