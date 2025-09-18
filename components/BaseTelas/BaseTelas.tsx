@@ -22,7 +22,7 @@ export default function BaseTelas({children, titulo, botaoVoltar}: BaseTelasProp
                     </Link> :
                     <></>}
                 {titulo.length > 0 ?
-                    <Text style={style.title}>{titulo}</Text> :
+                    <Text style={[style.title, { color: theme.text }]}>{titulo}</Text> :
                     <></>}
             </View>
             {children}
@@ -37,7 +37,6 @@ const style = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        color: "#fff",
         width: "90%",
         fontFamily: "K2D_700Bold",
     },

@@ -1,37 +1,30 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { useFonts, K2D_400Regular, K2D_700Bold } from '@expo-google-fonts/k2d';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function VisaoGeral() {
-    const [fontsLoaded] = useFonts({
-        K2D_400Regular,
-        K2D_700Bold,
-      });
-    
-      if (!fontsLoaded) {
-        return null;
-      }
+    const { theme } = useTheme();
 
-  return (
-    <View style={style.container}>
-        <View style={style.infoBox}>
-            <Text style={style.titleBox}>Vagas Disponíveis</Text>
-            <Text style={style.numberBox}>12</Text>
+    return (
+        <View style={style.container}>
+            <View style={[style.infoBox, { backgroundColor: theme.subBackground }]}>
+                <Text style={[style.titleBox, { color: theme.subText }]}>Vagas Disponíveis</Text>
+                <Text style={style.numberBox}>12</Text>
+            </View>
+            <View style={[style.infoBox, { backgroundColor: theme.subBackground }]}>
+                <Text style={[style.titleBox, { color: theme.subText }]}>Motos no Pátio</Text>
+                <Text style={style.numberBox}>28</Text>
+            </View>
+            <View style={[style.infoBox, { backgroundColor: theme.subBackground }]}>
+                <Text style={[style.titleBox, { color: theme.subText }]}>Problemas Críticos</Text>
+                <Text style={style.numberBox}>5</Text>
+            </View>
+            <View style={[style.infoBox, { backgroundColor: theme.subBackground }]}>
+                <Text style={[style.titleBox, { color: theme.subText }]}>Tempo Médio</Text>
+                <Text style={style.numberBox}>2h</Text>
+            </View>
         </View>
-        <View style={style.infoBox}>
-            <Text style={style.titleBox}>Motos no Pátio</Text>
-            <Text style={style.numberBox}>28</Text>
-        </View>
-        <View style={style.infoBox}>
-            <Text style={style.titleBox}>Problemas Críticos</Text>
-            <Text style={style.numberBox}>5</Text>
-        </View>
-        <View style={style.infoBox}>
-            <Text style={style.titleBox}>Tempo Médio</Text>
-            <Text style={style.numberBox}>2h</Text>
-        </View>
-    </View>
-  )
+    )
 }
 
 const style = StyleSheet.create({
@@ -44,7 +37,6 @@ const style = StyleSheet.create({
     infoBox: {
         width: '48%',
         height: 90,
-        backgroundColor: '#030C20',
         borderRadius: 5,
         marginBottom: 20,
         paddingHorizontal: 20,
@@ -54,9 +46,9 @@ const style = StyleSheet.create({
         borderColor: '#94A3B8',
     },
     titleBox: {
-        color: '#94A3B8',
         fontSize: 14,
-        fontFamily: 'K2D_400Regular',
+        fontFamily: 'K2D_700Bold',
+        
     },
     numberBox: {
         color: '#00CCCF',
@@ -64,5 +56,5 @@ const style = StyleSheet.create({
         fontFamily: 'K2D_700Bold',
         marginTop: -15,
     },
-  });
+});
   

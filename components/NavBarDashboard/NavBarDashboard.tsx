@@ -1,19 +1,24 @@
-import { K2D_700Bold, useFonts } from "@expo-google-fonts/k2d";
 import { Link } from "expo-router";
 import { StyleSheet, View } from "react-native";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function NavBarDashboard() {
+    const { theme } = useTheme();
 
-    const [fontsLoaded] = useFonts({
-        K2D_700Bold,
-      });
-
-  return (
-    <View style={style.container}>
-        <Link href="/cadastro" style={style.novaEntrada}>+ Nova Entrada</Link>
-        <Link href="/mapa" style={style.verMapa}>Ver Mapa</Link>
-    </View>
-  )
+    return (
+        <View style={style.container}>
+            <Link
+                href="/cadastro"
+                style={style.novaEntrada}>
+                    + Nova Entrada
+            </Link>
+            <Link 
+                href="/mapa" 
+                style={[style.verMapa, { backgroundColor: theme.subBackground, color: theme.text }]}>
+                    Ver Mapa
+            </Link>
+        </View>
+    )
 }
 
 const style = StyleSheet.create({
@@ -34,7 +39,6 @@ const style = StyleSheet.create({
         fontFamily: "K2D_700Bold",
     },
     verMapa: {
-        backgroundColor: "#030C20",
         width: "47%",
         height: 50,
         borderRadius: 5,
@@ -44,6 +48,5 @@ const style = StyleSheet.create({
         fontFamily: "K2D_700Bold",
         borderWidth: 0.5,
         borderColor: "#94A3B8",
-        color: "#fff",
     }
 })

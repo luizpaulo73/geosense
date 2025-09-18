@@ -6,15 +6,6 @@ import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes
 import BaseTelas from "../../components/BaseTelas/BaseTelas";
 
 export default function Dashboard() {
-
-    const [fontsLoaded] = useFonts({
-        K2D_700Bold,
-    });
-
-    if (!fontsLoaded) {
-        return null;
-    }
-
     return (
         <BaseTelas titulo='Dashboard' botaoVoltar="">
             <VisaoGeral />

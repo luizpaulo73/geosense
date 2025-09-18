@@ -1,12 +1,9 @@
-import { useFonts, K2D_700Bold } from "@expo-google-fonts/k2d";
 import { useState } from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function ToggleTabs() {
-
-    const [fontsLoaded] = useFonts({
-        K2D_700Bold,
-    });
+    const { theme } = useTheme();
 
     const [selectedTab, setSelectedTab] = useState<boolean>(true);
 
@@ -15,12 +12,12 @@ export default function ToggleTabs() {
     }
 
   return (
-    <View style={style.container}>
-        <TouchableOpacity style={[style.tab, {backgroundColor: selectedTab ? "#030C20" : "transparent"}]} onPress={handleTabPress}>
-            <Text style={style.tabText}>Entradas Recentes</Text>
+    <View style={[style.container, { backgroundColor: theme.toggleTabBackground }]}>
+        <TouchableOpacity style={[style.tab, {backgroundColor: selectedTab ? theme.subBackground : theme.toggleTabBackground}]} onPress={handleTabPress}>
+            <Text style={[style.tabText, { color: theme.text }]}>Entradas Recentes</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[style.tab, {backgroundColor: !selectedTab ? "#030C20" : "transparent"}]} onPress={handleTabPress}>
-            <Text style={style.tabText}>Problemas</Text>
+        <TouchableOpacity style={[style.tab, {backgroundColor: !selectedTab ? theme.subBackground : theme.toggleTabBackground}]} onPress={handleTabPress}>
+            <Text style={[style.tabText, { color: theme.text }]}>Problemas</Text>
         </TouchableOpacity>
     </View>
   )
@@ -28,7 +25,6 @@ export default function ToggleTabs() {
 
 const style = StyleSheet.create({
     container: {
-        backgroundColor: "#1E293B",
         width: "90%",
         flexWrap: "wrap",
         flexDirection: "row",
@@ -38,12 +34,11 @@ const style = StyleSheet.create({
     },
     tab: {
         padding: 5,
-        borderRadius: 5,
+        borderRadius: 3,
         margin: 5,
         width: "45%",
     },
     tabText: {
-        color: "#fff",
         fontSize: 16,
         textAlign: "center",
         fontFamily: "K2D_700Bold",
