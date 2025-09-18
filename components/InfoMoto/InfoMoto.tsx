@@ -1,19 +1,22 @@
 import { Text, View, StyleSheet } from "react-native"
+import { useTheme } from "../../context/ThemeContext";
 
 export default function InfoMoto() {
+    const { theme } = useTheme();
+
     return (
-        <View style={style.container}>
+        <View style={[style.container, { backgroundColor: theme.subBackground}]}>
             <View style={style.viewInfoEsquerda}>
-                <Text style={style.info}>Id: 0845</Text>
-                <Text style={style.info}>Vaga: M-12-231</Text>
-                <Text style={style.info}>Placa: ABC-1234</Text>
+                <Text style={[style.info, { color: theme.text}]}>Id: 0845</Text>
+                <Text style={[style.info, { color: theme.text}]}>Vaga: M-12-231</Text>
+                <Text style={[style.info, { color: theme.text}]}>Placa: ABC-1234</Text>
             </View>
             <View style={style.viewInfoDireita}>
                 <View style={{flexDirection: 'row', alignItems:"center", gap: 5}}>
                     <View style={{backgroundColor: '#ff0000', height: 18, width: 18, borderRadius: 5}}/>
-                    <Text style={style.info}>Em manutenção</Text>
+                    <Text style={[style.info, { color: theme.text}]}>Em manutenção</Text>
                 </View>
-                <Text style={style.textCategoria}>Motor</Text>
+                <Text style={[style.textCategoria, { color: theme.text}]}>Motor</Text>
             </View>
     </View>
     )
@@ -22,7 +25,6 @@ export default function InfoMoto() {
 const style = StyleSheet.create({
     container: {
         width: "90%",
-        backgroundColor: "#030C20",
         borderWidth: 0.5,
         borderColor: "#94A3B8",
         borderRadius: 5,
@@ -32,7 +34,6 @@ const style = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-        color: "#fff",
         fontFamily: "K2D_700Bold",
     },
     viewInfoEsquerda: {
@@ -43,7 +44,6 @@ const style = StyleSheet.create({
         alignItems: "flex-end",
     },
     textCategoria: {
-        color: "#fff",
         fontSize: 15,
         fontFamily: "K2D_400Regular",
         borderWidth: 0.5,

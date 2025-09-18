@@ -1,16 +1,19 @@
 import { View, Text, Image, StyleSheet } from "react-native"
+import { useTheme } from "../../context/ThemeContext";
 
 export default function InfoDatasMoto() {
+    const { theme } = useTheme();
+
     return (
-        <View style={style.container}>
+        <View style={[style.container, { backgroundColor: theme.subBackground }]}>
             <View style={style.viewEntradaSaida}>
-                <Text style={style.info}>Data de Entrada</Text>
-                <Text style={style.info}>12:00 12/04/2026</Text>
+                <Text style={[style.info, { color: theme.text }]}>Data de Entrada</Text>
+                <Text style={[style.info, { color: theme.text }]}>12:00 12/04/2026</Text>
             </View>
             <Image source={require('../../assets/logos/caminho.png')} style={style.icone} />
             <View style={style.viewEntradaSaida}>
-                <Text style={style.info}>Data de Saída</Text>
-                <Text style={style.info}>12:00 12/04/2026</Text>
+                <Text style={[style.info, { color: theme.text }]}>Data de Saída</Text>
+                <Text style={[style.info, { color: theme.text }]}>12:00 12/04/2026</Text>
             </View>
         </View>
     )
@@ -19,7 +22,6 @@ export default function InfoDatasMoto() {
 const style = StyleSheet.create({
     container: {
         width: "90%",
-        backgroundColor: "#030C20",
         borderWidth: 0.5,
         borderColor: "#94A3B8",
         borderRadius: 5,
@@ -28,7 +30,6 @@ const style = StyleSheet.create({
     },
     info: {
         fontSize: 16,
-        color: "#fff",
         fontFamily: "K2D_700Bold",
     },
     viewEntradaSaida: {
