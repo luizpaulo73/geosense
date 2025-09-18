@@ -23,7 +23,6 @@ const style = StyleSheet.create({
     infoConta: {
         width: "90%",
         height: 90,
-        backgroundColor: "#030C20",
         borderRadius: 5,
         padding: 10,
         textAlignVertical: "center",

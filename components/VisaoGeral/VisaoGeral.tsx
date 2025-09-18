@@ -40,7 +40,6 @@ const style = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        backgroundColor: '#020817',
       },      
     infoBox: {
         width: '48%',

@@ -1,43 +1,34 @@
-import { Text, View, Image, StyleSheet, TextInput } from "react-native"
-import { useFonts, K2D_400Regular, K2D_700Bold } from "@expo-google-fonts/k2d"
+import { Text, View, Image, StyleSheet, TextInput } from "react-native";
 import { Link } from "expo-router";
+import { useTheme } from "../context/ThemeContext";
 
 export default function TelaInicial() {
-    
-    const [fontsLoaded] = useFonts({
-        K2D_400Regular,
-        K2D_700Bold,
-    });
-    
-    if (!fontsLoaded) {
-        return null;
-    }
+    const { theme } = useTheme();
 
-  return (
-    <>
-        <View style={style.container}>
-            <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
-            <Text style={style.welcomeText}>Bem Vindo</Text>
+    return (
+        <>
+            <View style={[{backgroundColor: theme.background},style.container]}>
+                <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
+                <Text style={style.welcomeText}>Bem Vindo</Text>
 
-            <Text style={style.labelInput} >Login</Text>
-            <TextInput placeholder="Digite seu Login" style={style.input} placeholderTextColor={"#94A3B8"}/>
+                <Text style={style.labelInput} >Login</Text>
+                <TextInput placeholder="Digite seu Login" style={style.input} placeholderTextColor={"#94A3B8"}/>
 
-            <Text style={style.labelInput} >Senha</Text>
-            <TextInput placeholder="Digite sua Senha" style={style.input} placeholderTextColor={"#94A3B8"}/>
+                <Text style={style.labelInput} >Senha</Text>
+                <TextInput placeholder="Digite sua Senha" style={style.input} placeholderTextColor={"#94A3B8"}/>
 
-            <Link href="/dashboard" style={style.btnLogin}>
-                <Text style={style.btnLoginText}>Entrar</Text>
-            </Link>
-        </View>
-    </>
-  )
+                <Link href="/dashboard" style={style.btnLogin}>
+                    <Text style={style.btnLoginText}>Entrar</Text>
+                </Link>
+            </View>
+        </>
+    )
 }
 
 const style = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#020817",
         paddingTop: 50,
     },
     logo: {

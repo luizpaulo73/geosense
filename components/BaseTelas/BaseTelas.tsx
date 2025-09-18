@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Image } from "react-native";
 import Cabecalho from "../Cabecalho/Cabecalho";
 import { Link } from "expo-router";
+import { useTheme } from "../../context/ThemeContext";
 
 interface BaseTelasProps {
     children: React.ReactNode;
@@ -8,9 +9,11 @@ interface BaseTelasProps {
     botaoVoltar: string
 }
 
-export default function BaseTelas({children, titulo, botaoVoltar}: BaseTelasProps,) {
+export default function BaseTelas({children, titulo, botaoVoltar}: BaseTelasProps) {
+    const { theme } = useTheme();
+
     return (
-        <View style={style.container}>
+        <View style={[style.container, { backgroundColor: theme.background }]}>
             <Cabecalho/>
             <View style={{flexDirection: "row", alignItems: "center", gap: 5, width: "90%"}}>
                 {botaoVoltar.length > 0 ? 
@@ -31,7 +34,6 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#020817"
     },
     title: {
         fontSize: 24,
