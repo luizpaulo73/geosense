@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Image, Linking, TouchableOpacity } from "react-native";
+import { useTheme } from "../../context/ThemeContext";
 
 type tipoParticipantes = {
     nome: string;
@@ -13,17 +14,18 @@ type CardParticipanteProps = {
 };
 
 export default function CardParticipante({dados} : CardParticipanteProps) {
+    const { theme } = useTheme();
 
     const abrirLink = (url: string) => {
         Linking.openURL(url)
     };
 
     return (
-        <View style={style.card}>
+        <View style={[style.card, { backgroundColor: theme.subBackground}]}>
             <View style={{width: "60%"}}>
-                <Text style={style.infos}>{dados.nome}</Text>
+                <Text style={[style.infos, { color: theme.text }]}>{dados.nome}</Text>
                 <View style={style.viewRMRedes}>
-                    <Text style={style.infoRm}>RM {dados.rm}</Text>
+                    <Text style={[style.infoRm, { color: theme.subText }]}>RM {dados.rm}</Text>
                     <View style={{flexDirection: "row", gap: 10}}>
                         <TouchableOpacity onPress={() => abrirLink(dados.linkedin)}>
                             <Image style={style.image} source={require('../../assets/redes/linkedin.png')}/>
@@ -44,7 +46,6 @@ export default function CardParticipante({dados} : CardParticipanteProps) {
 
 const style = StyleSheet.create({
     card: {
-        backgroundColor: "#030C20",
         width: "90%",
         height: 150,
         borderRadius: 5,
@@ -76,9 +77,9 @@ const style = StyleSheet.create({
         gap: 8
     },
     infoRm: {
-        color: "#94A3B8",
         fontSize: 16,
-        paddingLeft: 5
+        paddingLeft: 5,
+        fontFamily: "K2D_400Regular"
     },
     imgParticipante: {
         width: 125,

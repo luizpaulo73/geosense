@@ -1,19 +1,22 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useTheme } from "../../context/ThemeContext";
 
 
 export default function Disponibilidade() {
-  return (
-    <View style={style.container}>
-        <View style={style.viewAvailability}>
-            <View style={[style.boxAvailability,{ backgroundColor: "#00CCCF"}]} />
-            <Text style={style.textAvailability}>Disponível</Text>
+    const { theme } = useTheme();
+
+    return (
+        <View style={[style.container, { backgroundColor: theme.subBackground}]}>
+            <View style={style.viewAvailability}>
+                <View style={[style.boxAvailability,{ backgroundColor: "#00CCCF"}]} />
+                <Text style={[style.textAvailability, { color: theme.text }]}>Disponível</Text>
+            </View>
+            <View style={style.viewAvailability}>
+                <View style={[style.boxAvailability,{ backgroundColor: "#FF0000"}]} />
+                <Text style={[style.textAvailability, { color: theme.text }]}>Ocupada</Text>
+            </View>
         </View>
-        <View style={style.viewAvailability}>
-            <View style={[style.boxAvailability,{ backgroundColor: "#FF0000"}]} />
-            <Text style={style.textAvailability}>Ocupada</Text>
-        </View>
-    </View>
-  )
+    )
 }
 
 const style = StyleSheet.create({

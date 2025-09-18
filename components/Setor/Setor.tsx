@@ -1,30 +1,31 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import vagas from "../../data/vagas.json"
+import { useTheme } from '../../context/ThemeContext';
 
 export default function Setor(props: { area: string }) {
-  const { area } = props
-  return (
-    <View style={style.setor}>
-        <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
-            <Text style={style.textSetor}>Setor - {area}</Text>
-            <Text style={style.textDisponiveis}>12 Disponíveis</Text>
+    const { area } = props;
+    const { theme } = useTheme();
+    return (
+        <View style={[style.setor, { backgroundColor: theme.subBackground }]}>
+            <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+                <Text style={[style.textSetor, { color: theme.text }]}>Setor - {area}</Text>
+                <Text style={[style.textDisponiveis, { color: theme.text }]}>12 Disponíveis</Text>
+            </View>
+            <View style={style.viewVagas}>
+                {vagas.map((vaga) => (
+                    <View key={vaga.idVaga} style={[style.vaga, { backgroundColor: vaga.ocupada ? "#00CCCF" : "#FF0000"}]}>
+                        <Text style={style.nrVaga}>{vaga.idVaga}</Text>
+                    </View>
+                ))}
+            </View>
+            
         </View>
-        <View style={style.viewVagas}>
-            {vagas.map((vaga) => (
-                <View key={vaga.idVaga} style={[style.vaga, { backgroundColor: vaga.ocupada ? "#00CCCF" : "#FF0000"}]}>
-                    <Text style={style.nrVaga}>{vaga.idVaga}</Text>
-                </View>
-            ))}
-        </View>
-        
-    </View>
-  )
+    )
 }
 
 const style = StyleSheet.create({
     setor: {
-        backgroundColor: "#030C20",
         borderWidth: 0.5,
         borderColor: "#94A3B8",
         width: "90%",
@@ -37,7 +38,6 @@ const style = StyleSheet.create({
         padding: 5,
     },
     textDisponiveis: {
-        color: "#fff",
         fontSize: 14,
         fontFamily: "K2D_400Regular",
         borderWidth: 0.5,

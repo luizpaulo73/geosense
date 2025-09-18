@@ -2,15 +2,18 @@ import { View, Text, StyleSheet } from "react-native";
 import BaseTelas from "../../components/BaseTelas/BaseTelas";
 import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
 import { Link } from "expo-router";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function conta() {
+    const { theme } = useTheme();
+
     return (
         <BaseTelas titulo='Conta' botaoVoltar="">
-            <View style={style.infoConta}>
-                <Text style={style.info}>João Silva</Text>
-                <Text style={style.cargo}>Mecanico</Text>
+            <View style={[style.infoConta, { backgroundColor: theme.subBackground}]}>
+                <Text style={[style.info, { color: theme.text }]}>João Silva</Text>
+                <Text style={[style.cargo, { color: theme.subText} ]}>Mecanico</Text>
             </View>
-            <Text style={style.title}>Motos a reparar</Text>
+            <Text style={[style.title, { color: theme.text }]}>Motos a reparar</Text>
             <EntradasRecentes />
             <Link href={"/participantes"} style={style.btnLogin}>
                 <Text style={style.btnLoginText}>Participantes</Text>
@@ -34,18 +37,15 @@ const style = StyleSheet.create({
     },
     info: {
         fontSize: 20,
-        color: "#fff",
         fontFamily: "K2D_700Bold",
     },
     cargo: {
         fontSize: 15,
-        color: "#94A3B8",
         fontFamily: "K2D_700Bold",
         paddingLeft: 5
     },
     title: {
         fontSize: 24,
-        color: "#fff",
         width: "90%",
         fontFamily: "K2D_700Bold",
         marginTop: 5
