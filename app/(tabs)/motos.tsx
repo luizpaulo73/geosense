@@ -5,8 +5,10 @@ import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes
 import BaseTelas from "../../components/BaseTelas/BaseTelas";
 import setores from "../../data/options/tipoProblema.json";
 import estadoMoto from "../../data/options/estadoMoto.json";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function motos() {
+    const { theme } = useTheme();
 
     const [openSetor, setOpenSetor] = useState(false);
     const [valueSetor, setValueSetor] = useState(null);
@@ -19,7 +21,7 @@ export default function motos() {
     return (
         <BaseTelas titulo="Lista de Motos" botaoVoltar="">
             <View style={{gap: 10, width: "100%", alignItems: "center"}}>
-            <TextInput placeholder="Buscar Por ID ou Placa" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+            <TextInput placeholder="Buscar Por ID ou Placa" style={[style.searchBar, { backgroundColor: theme.subBackground, color: theme.text}]} placeholderTextColor={theme.subText}/>
                 <DropDownPicker
                     open={openSetor}
                     value={valueSetor}
@@ -28,9 +30,9 @@ export default function motos() {
                     setValue={setValueSetor}
                     setItems={setItemsSetor}
                     placeholder="Todos os Setores"
-                    style={style.dropdown}
-                    dropDownContainerStyle={style.dropdownContainer}
-                    textStyle={style.text}
+                    style={[style.dropdown, { backgroundColor: theme.subBackground}]}
+                    dropDownContainerStyle={[style.dropdownContainer, { backgroundColor: theme.subBackground }]}
+                    textStyle={[style.text, { color: theme.subText }]}
                     zIndex={2000}
                 />
 
@@ -42,9 +44,9 @@ export default function motos() {
                     setValue={setValueEstado}
                     setItems={setItemsEstado}
                     placeholder="Estado"
-                    style={style.dropdown}
-                    dropDownContainerStyle={style.dropdownContainer}
-                    textStyle={style.text}
+                    style={[style.dropdown, { backgroundColor: theme.subBackground}]}
+                    dropDownContainerStyle={[style.dropdownContainer, { backgroundColor: theme.subBackground }]}
+                    textStyle={[style.text, { color: theme.subText }]}
                     zIndex={1000}
                 />
             </View>
@@ -57,7 +59,6 @@ const style = StyleSheet.create({
     searchBar: {
         width: "90%",
         height: 45,
-        backgroundColor: "#030C20",
         borderRadius: 5,
         paddingHorizontal: 10,
         textAlignVertical: "center",
@@ -68,7 +69,6 @@ const style = StyleSheet.create({
         color: "#fff",
     },
     dropdown: {
-        backgroundColor: '#030C20',
         borderColor: '#94A3B8',
         borderWidth: 0.5,
         width: "90%",
@@ -76,7 +76,6 @@ const style = StyleSheet.create({
       },
       
       dropdownContainer: {
-        backgroundColor: '#030C20',
         borderColor: '#94A3B8',
         width: "100%",
         borderWidth: 0.5,
@@ -84,6 +83,5 @@ const style = StyleSheet.create({
       },
       text: {
         fontSize: 15,
-        color: '#94A3B8',
       }
 })

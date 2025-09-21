@@ -105,6 +105,5 @@ const style = StyleSheet.create({
       },
       text: {
         fontSize: 15,
-        color: '#94A3B8',
       }
 })

@@ -9,13 +9,13 @@ export default function TelaInicial() {
         <>
             <View style={[{backgroundColor: theme.background},style.container]}>
                 <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
-                <Text style={style.welcomeText}>Bem Vindo</Text>
+                <Text style={[style.welcomeText, { color: theme.text }]}>Bem Vindo</Text>
 
-                <Text style={style.labelInput} >Login</Text>
-                <TextInput placeholder="Digite seu Login" style={style.input} placeholderTextColor={"#94A3B8"}/>
+                <Text style={[style.labelInput, { color: theme.text }]} >Login</Text>
+                <TextInput placeholder="Digite seu Login" style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
 
-                <Text style={style.labelInput} >Senha</Text>
-                <TextInput placeholder="Digite sua Senha" style={style.input} placeholderTextColor={"#94A3B8"}/>
+                <Text style={[style.labelInput, { color: theme.text }]} >Senha</Text>
+                <TextInput placeholder="Digite sua Senha" style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
 
                 <Link href="/dashboard" style={style.btnLogin}>
                     <Text style={style.btnLoginText}>Entrar</Text>
@@ -36,14 +36,12 @@ const style = StyleSheet.create({
         height: 300,
     },
     welcomeText: {
-        color: "#fff",
         fontSize: 30,
         fontFamily: "K2D_700Bold",
     },
     input: {
         width: "90%",
         height: 45,
-        backgroundColor: "#030C20",
         borderRadius: 5,
         paddingHorizontal: 10,
         textAlignVertical: "center",
@@ -52,11 +50,9 @@ const style = StyleSheet.create({
         borderColor: "#94A3B8",
         borderWidth: 0.5,
         fontFamily: "K2D_400Regular",
-        color: "#fff",
     },
     labelInput: {
         width: "90%",
-        color: "#fff",
         fontSize: 18,
         marginTop: 10,
         fontFamily: "K2D_700Bold",

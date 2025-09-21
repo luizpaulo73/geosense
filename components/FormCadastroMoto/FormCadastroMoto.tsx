@@ -5,8 +5,10 @@ import DropDownPicker from "react-native-dropdown-picker"
 import { Checkbox } from "react-native-paper";
 import setores from "../../data/options/tipoProblema.json";
 import modelo from "../../data/options/modeloMoto.json";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function FormCadastroMoto() {
+    const { theme } = useTheme();
 
     const [isSelected, setSelection] = useState(false);
     const [openMoto, setOpenMoto] = useState(false);
@@ -20,7 +22,7 @@ export default function FormCadastroMoto() {
     return (
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
             <View style={{flexDirection: "row", alignItems: "center", gap: 5, width: "90%"}}>
-                <Text style={style.labelInput}>Selecione o Modelo da Moto</Text>
+                <Text style={[style.labelInput, { color: theme.text }]}>Selecione o Modelo da Moto</Text>
             </View>
             <DropDownPicker
                 open={openMoto}
@@ -30,15 +32,15 @@ export default function FormCadastroMoto() {
                 setValue={setValueMoto}
                 setItems={setItemsMoto}
                 placeholder="Selecione o Modelo"
-                style={style.dropdown}
-                dropDownContainerStyle={style.dropdownContainer}
-                textStyle={style.text}
+                style={[style.dropdown, { backgroundColor: theme.subBackground}]}
+                dropDownContainerStyle={[style.dropdownContainer, { backgroundColor: theme.subBackground }]}
+                textStyle={[style.text, { color: theme.subText }]}
                 zIndex={2000}
             />
             <View style={{flexDirection: "row", justifyContent: "space-between", width: "90%"}}>
-                <Text style={[style.labelInput, {width: "50%"}]}>Placa</Text>
+                <Text style={[[style.labelInput, { color: theme.text }], {width: "50%"}]}>Placa</Text>
                 <View style={{flexDirection: "row", width: "50%", justifyContent: "flex-end", alignItems: "center"}}>
-                   <Text style={style.semPlacaText}>Moto sem Placa</Text>
+                   <Text style={[style.semPlacaText, { color: theme.subText }]}>Moto sem Placa</Text>
                    <Checkbox
                         status={isSelected ? 'checked' : 'unchecked'}
                         onPress={() => {
@@ -48,14 +50,14 @@ export default function FormCadastroMoto() {
                     />
                 </View>
             </View>
-            <TextInput placeholder="ABC-1234" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+            <TextInput placeholder="ABC-1234" style={[style.searchBar, { backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
             
             {isSelected ? <>
-                <Text style={style.labelInput}>Número de Chassi</Text>
-                <TextInput placeholder="XXXYYYYYYZ1234567" style={style.searchBar} placeholderTextColor={"#94A3B8"}/>
+                <Text style={[style.labelInput, { color: theme.text }]}>Número de Chassi</Text>
+                <TextInput placeholder="XXXYYYYYYZ1234567" style={[style.searchBar, { backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
             </> : null}
 
-            <Text style={style.labelInput}>Selecione o Problema da Moto</Text>
+            <Text style={[style.labelInput, { color: theme.text }]}>Selecione o Problema da Moto</Text>
             <DropDownPicker
                 open={openProblema}
                 value={valueProblema}
@@ -64,9 +66,9 @@ export default function FormCadastroMoto() {
                 setValue={setValueProblema}
                 setItems={setItemsProblema}
                 placeholder="Selecione o Problema"
-                style={style.dropdown}
-                dropDownContainerStyle={style.dropdownContainer}
-                textStyle={style.text}
+                style={[style.dropdown, { backgroundColor: theme.subBackground}]}
+                dropDownContainerStyle={[style.dropdownContainer, { backgroundColor: theme.subBackground }]}
+                textStyle={[style.text, { color: theme.subText }]}
                 zIndex={1000}
             />
             <Link href={"/selecionarMapa/Motor"} style={style.btnLogin}>
@@ -78,7 +80,6 @@ export default function FormCadastroMoto() {
 
 const style = StyleSheet.create({
     dropdown: {
-        backgroundColor: '#030C20',
         borderColor: '#94A3B8',
         borderWidth: 0.5,
         width: "90%",
@@ -87,7 +88,6 @@ const style = StyleSheet.create({
     searchBar: {
         width: "90%",
         height: 45,
-        backgroundColor: "#030C20",
         borderRadius: 5,
         paddingHorizontal: 10,
         textAlignVertical: "center",
@@ -95,10 +95,8 @@ const style = StyleSheet.create({
         borderColor: "#94A3B8",
         borderWidth: 0.5,
         fontFamily: "K2D_400Regular",
-        color: "#fff",
     },
     dropdownContainer: {
-        backgroundColor: '#030C20',
         borderColor: '#94A3B8',
         width: "100%",
         borderWidth: 0.5,
@@ -107,10 +105,8 @@ const style = StyleSheet.create({
     },
     text: {
         fontSize: 15,
-        color: '#94A3B8',
     },
     labelInput: {
-        color: "#fff",
         fontSize: 18,
         fontFamily: "K2D_700Bold",
         width: "90%",
@@ -131,7 +127,6 @@ const style = StyleSheet.create({
         textAlignVertical: "center",
     },
     semPlacaText: {
-        color: "#94A3B8",
         fontSize: 14,
         fontFamily: "K2D_700Bold",
     },
