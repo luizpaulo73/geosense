@@ -1,0 +1,159 @@
+{
+    "motos": [
+    {
+        "id": "0845",
+        "vaga": "M-12-231",
+        "placa": "ABC1234",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-01T10:00:00Z",
+        "dataSaida": "2025-09-05T10:00:00Z"
+    },
+    {
+        "id": "0846",
+        "vaga": "M-12-232",
+        "placa": "DEF5678",
+        "situacao": {
+            "status": "Disponível",
+            "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-01T11:00:00Z",
+        "dataSaida": "2025-09-01T12:00:00Z"
+    },
+    {
+        "id": "0847",
+        "vaga": "M-12-233",
+        "placa": "GHI9012",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "IOT"
+        },
+        "dataEntrada": "2025-09-02T09:30:00Z",
+        "dataSaida": "2025-09-06T09:30:00Z"
+    },
+    {
+        "id": "0848",
+        "vaga": "M-12-234",
+        "placa": "JKL3456",
+        "situacao": {
+            "status": "Disponível",
+            "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-02T14:00:00Z",
+        "dataSaida": "2025-09-02T15:00:00Z"
+    },
+    {
+        "id": "0849",
+        "vaga": "M-12-235",
+        "placa": "MNO7890",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-03T08:00:00Z",
+        "dataSaida": "2025-09-07T08:00:00Z"
+    },
+    {
+        "id": "0850",
+        "vaga": "M-12-236",
+        "placa": "PQR1235",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "IOT"
+        },
+        "dataEntrada": "2025-09-03T12:00:00Z",
+        "dataSaida": "2025-09-08T12:00:00Z"
+    },
+    {
+        "id": "0851",
+        "vaga": "M-12-237",
+        "placa": "STU4567",
+        "situacao": {
+            "status": "Disponível",
+            "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-04T10:15:00Z",
+        "dataSaida": "2025-09-04T11:00:00Z"
+    },
+    {
+        "id": "0852",
+        "vaga": "M-12-238",
+        "placa": "VWX8901",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-04T13:45:00Z",
+        "dataSaida": "2025-09-09T13:45:00Z"
+    },
+    {
+        "id": "0853",
+        "vaga": "M-12-239",
+        "placa": "YZA2345",
+        "situacao": {
+            "status": "Disponível",
+            "tipoProblema": "IOT"
+        },
+        "dataEntrada": "2025-09-05T09:00:00Z",
+        "dataSaida": "2025-09-05T09:30:00Z"
+    },
+    {
+        "id": "0854",
+        "vaga": "M-12-240",
+        "placa": "BCD6789",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-05T16:00:00Z",
+        "dataSaida": "2025-09-10T16:00:00Z"
+    },
+    {
+        "id": "0855",
+        "vaga": "M-12-241",
+        "placa": "EFG0123",
+        "situacao": {
+            "status": "Disponível",
+            "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-06T08:00:00Z",
+        "dataSaida": "2025-09-06T08:30:00Z"
+    },
+    {
+        "id": "0856",
+        "vaga": "M-12-242",
+        "placa": "HIJ4567",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "IOT"
+        },
+        "dataEntrada": "2025-09-06T10:00:00Z",
+        "dataSaida": "2025-09-11T10:00:00Z"
+    },
+    {
+        "id": "0857",
+        "vaga": "M-12-243",
+        "placa": "KLM8901",
+        "situacao": {
+            "status": "Em Manutenção",
+            "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-07T14:30:00Z",
+        "dataSaida": "2025-09-12T14:30:00Z"
+    },
+    {
+        "id": "0858",
+        "vaga": "M-12-244",
+        "placa": "NOP2345",
+        "situacao": {
+            "status": "Disponível",
+            "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-07T18:00:00Z",
+        "dataSaida": "2025-09-07T18:30:00Z"
+    }
+]
+
+}
