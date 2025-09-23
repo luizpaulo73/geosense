@@ -10,7 +10,7 @@ export default function EntradasRecentes() {
     // Função para fazer o fetch dos dados
     const fetchEntradas = async () => {
         try {
-            const response = await fetch('http://10.0.2.2:3000/motos');
+            const response = await fetch('http://10.0.2.2:3000/vagas');
             const data = await response.json();
             setDados(data);
         } catch (error) {

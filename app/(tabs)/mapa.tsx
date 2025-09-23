@@ -59,9 +59,9 @@ export default function Mapa() {
             
             
                 <Disponibilidade />
-                <Setor area={"IOT"}/>
-                <Setor area={"Motor Defeituoso"}/>
-                <Setor area={"Danos Estruturais"}/>
+                <Setor area="IOT" />
+                <Setor area="Motor Defeituoso" />
+                <Setor area="Placa" />
             </ScrollView>
         </BaseTelas>
   )
