@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 export default function EntradasRecentes() {
     const { theme } = useTheme();
-    const [dados, setDados] = useState<Moto[] | null>(null);
+    const [dados, setDados] = useState<Vaga[] | null>(null);
 
     // Função para fazer o fetch dos dados
     const fetchEntradas = async () => {
@@ -28,20 +28,22 @@ export default function EntradasRecentes() {
                 style={style.lista}
                 data={dados}
                 renderItem={({ item }) => (
-                    <View style={[style.item, { backgroundColor: theme.subBackground }]} key={item.id}>
+                    <View style={[style.item, { backgroundColor: theme.subBackground }]} key={item.moto.id}>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", width: "95%" }}>
-                            <Text style={[style.title, { color: theme.text }]}>{item.modelo} - {item.id} - {item.vaga}</Text>
-                            <Text style={[style.textCategoria, { color: theme.subText }]}>
-                                {item.situacao.tipoProblema}
-                            </Text>
+                        <Text style={[style.title, { color: theme.text }]}>
+                            {item.moto.modelo} - {item.moto.id} - {item.idVaga}
+                        </Text>
+                        <Text style={[style.textCategoria, { color: theme.subText }]}>
+                            {item.moto.situacao.tipoProblema}
+                        </Text>
                         </View>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", width: "95%" }}>
-                            <Text style={[style.textEntrada, { color: theme.subText }]}>
-                                Entrada: {new Date(item.dataEntrada).toLocaleString()}
-                            </Text>
-                            <Link href={"/mottu"} style={style.textDetalhes}>
-                                Detalhes
-                            </Link>
+                        <Text style={[style.textEntrada, { color: theme.subText }]}>
+                            Entrada: {new Date(item.moto.dataEntrada).toLocaleString()}
+                        </Text>
+                        <Link href={"/mottu"} style={style.textDetalhes}>
+                            Detalhes
+                        </Link>
                         </View>
                     </View>
                 )}
