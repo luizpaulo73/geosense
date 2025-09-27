@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Theme = {
     background: string;
@@ -17,7 +18,7 @@ const lightTheme: Theme = {
     text: "#000000",
     subText: "#4B5563",
     font400: "K2D_400Regular",
-    font700: "K2D_700Regular"
+    font700: "K2D_700Regular",
 };
 
 const darkTheme: Theme = {
@@ -27,7 +28,7 @@ const darkTheme: Theme = {
     text: "#FFF",
     subText: "#94A3B8",
     font400: "K2D_400Regular",
-    font700: "K2D_700Regular"
+    font700: "K2D_700Regular",
 };
 
 type ThemeContextType = {
@@ -40,7 +41,29 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     const [isDark, setIsDark] = useState(false);
 
-    const toggleTheme = () => setIsDark((prev) => !prev);
+    useEffect(() => {
+        const loadTheme = async () => {
+            try {
+                const savedTheme = await AsyncStorage.getItem("theme");
+                if (savedTheme !== null) {
+                    setIsDark(savedTheme === "dark");
+                }
+            } catch (error) {
+                console.error("Erro ao carregar tema:", error);
+            }
+        };
+        loadTheme();
+    }, []);
+
+    const toggleTheme = async () => {
+        try {
+            const newTheme = !isDark ? "dark" : "light";
+            await AsyncStorage.setItem("theme", newTheme);
+            setIsDark((prev) => !prev);
+        } catch (error) {
+            console.error("Erro ao salvar tema:", error);
+        }
+    };
 
     return (
         <ThemeContext.Provider
