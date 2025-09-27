@@ -41,7 +41,13 @@ export default function EntradasRecentes() {
                         <Text style={[style.textEntrada, { color: theme.subText }]}>
                             Entrada: {new Date(item.moto.dataEntrada).toLocaleString()}
                         </Text>
-                        <Link href={"/mottu"} style={style.textDetalhes}>
+                        <Link 
+                            href={{
+                                pathname: "/mottu",
+                                params: { moto: JSON.stringify(item.moto) }
+                            }}
+                            style={style.textDetalhes}
+                        >
                             Detalhes
                         </Link>
                         </View>

@@ -1,25 +1,49 @@
-import { Text, View, StyleSheet } from "react-native"
+import { Text, View, StyleSheet } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function InfoMoto() {
+interface Situacao {
+    status: string;
+    tipoProblema: string;
+}
+
+interface Moto {
+    id: string;
+    vaga: string;
+    placa: string;
+    modelo: string;
+    situacao: Situacao;
+}
+
+export default function InfoMoto({ moto }: { moto: Moto }) {
     const { theme } = useTheme();
 
     return (
-        <View style={[style.container, { backgroundColor: theme.subBackground}]}>
+        <View style={[style.container, { backgroundColor: theme.subBackground }]}>
             <View style={style.viewInfoEsquerda}>
-                <Text style={[style.info, { color: theme.text}]}>Id: 0845</Text>
-                <Text style={[style.info, { color: theme.text}]}>Vaga: M-12-231</Text>
-                <Text style={[style.info, { color: theme.text}]}>Placa: ABC-1234</Text>
+                <Text style={[style.info, { color: theme.text }]}>Id: {moto.id}</Text>
+                <Text style={[style.info, { color: theme.text }]}>Vaga: {moto.vaga}</Text>
+                <Text style={[style.info, { color: theme.text }]}>Placa: {moto.placa}</Text>
             </View>
             <View style={style.viewInfoDireita}>
-                <View style={{flexDirection: 'row', alignItems:"center", gap: 5}}>
-                    <View style={{backgroundColor: '#ff0000', height: 18, width: 18, borderRadius: 5}}/>
-                    <Text style={[style.info, { color: theme.text}]}>Em manutenção</Text>
+                <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+                    <View
+                        style={{
+                        backgroundColor: "#ff0000",
+                        height: 18,
+                        width: 18,
+                        borderRadius: 5,
+                        }}
+                    />
+                    <Text style={[style.info, { color: theme.text }]}>
+                        {moto.situacao.status}
+                    </Text>
                 </View>
-                <Text style={[style.textCategoria, { color: theme.text}]}>Motor</Text>
+                <Text style={[style.textCategoria, { color: theme.text }]}>
+                    {moto.situacao.tipoProblema}
+                </Text>
             </View>
-    </View>
-    )
+        </View>
+    );
 }
 
 const style = StyleSheet.create({
@@ -53,5 +77,5 @@ const style = StyleSheet.create({
         height: 30,
         verticalAlign: "middle",
         textAlign: "center",
-    }
+    },
 });

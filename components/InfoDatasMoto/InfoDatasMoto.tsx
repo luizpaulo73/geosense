@@ -1,22 +1,31 @@
-import { View, Text, Image, StyleSheet } from "react-native"
+import { View, Text, Image, StyleSheet } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
 
-export default function InfoDatasMoto() {
+interface Moto {
+    dataEntrada: string;
+    dataSaida: string;
+}
+
+export default function InfoDatasMoto({ moto }: { moto: Moto }) {
     const { theme } = useTheme();
 
     return (
         <View style={[style.container, { backgroundColor: theme.subBackground }]}>
             <View style={style.viewEntradaSaida}>
                 <Text style={[style.info, { color: theme.text }]}>Data de Entrada</Text>
-                <Text style={[style.info, { color: theme.text }]}>12:00 12/04/2026</Text>
+                <Text style={[style.info, { color: theme.text }]}>
+                    {new Date(moto.dataEntrada).toLocaleString()}
+                </Text>
             </View>
-            <Image source={require('../../assets/logos/caminho.png')} style={style.icone} />
+            <Image source={require("../../assets/logos/caminho.png")} style={style.icone} />
             <View style={style.viewEntradaSaida}>
                 <Text style={[style.info, { color: theme.text }]}>Data de Saída</Text>
-                <Text style={[style.info, { color: theme.text }]}>12:00 12/04/2026</Text>
+                <Text style={[style.info, { color: theme.text }]}>
+                    {moto.dataSaida ? new Date(moto.dataSaida).toLocaleString() : "—"}
+                </Text>
             </View>
         </View>
-    )
+    );
 }
 
 const style = StyleSheet.create({
@@ -39,5 +48,5 @@ const style = StyleSheet.create({
     icone: {
         width: 20,
         height: 30,
-    }
+    },
 });
