@@ -1,0 +1,100 @@
+{
+  "vagas": [
+    {
+      "idVaga": "M-12-231",
+      "ocupada": true,
+      "setor": "Motor Defeituoso",
+      "moto": {
+        "id": "0845",
+        "placa": "ABC1234",
+        "modelo": "Mottu Sport",
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-01T10:00:00Z",
+        "dataSaida": "2025-09-05T10:00:00Z"
+      }
+    },
+    {
+      "idVaga": "M-12-232",
+      "ocupada": false,
+      "setor": "Placa",
+      "moto": {
+        "id": "0846",
+        "placa": "DEF5678",
+        "modelo": "Mottu Pop",
+        "situacao": {
+          "status": "Disponível",
+          "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-01T11:00:00Z",
+        "dataSaida": "2025-09-01T12:00:00Z"
+      }
+    },
+    {
+      "idVaga": "M-12-233",
+      "ocupada": true,
+      "setor": "IOT",
+      "moto": {
+        "id": "0847",
+        "placa": "GHI9012",
+        "modelo": "Mottu E",
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "IOT"
+        },
+        "dataEntrada": "2025-09-02T09:30:00Z",
+        "dataSaida": "2025-09-06T09:30:00Z"
+      }
+    },
+    {
+      "idVaga": "M-12-234",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": {
+        "id": "0848",
+        "placa": "JKL3456",
+        "modelo": "Mottu Pop",
+        "situacao": {
+          "status": "Disponível",
+          "tipoProblema": "Motor"
+        },
+        "dataEntrada": "2025-09-02T14:00:00Z",
+        "dataSaida": "2025-09-02T15:00:00Z"
+      }
+    },
+    {
+      "idVaga": "M-12-235",
+      "ocupada": true,
+      "setor": "Placa",
+      "moto": {
+        "id": "0849",
+        "placa": "MNO7890",
+        "modelo": "Mottu Sport",
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "Placa"
+        },
+        "dataEntrada": "2025-09-03T08:00:00Z",
+        "dataSaida": "2025-09-07T08:00:00Z"
+      }
+    },
+    {
+      "idVaga": "M-12-236",
+      "ocupada": true,
+      "setor": "IOT",
+      "moto": {
+        "id": "0850",
+        "placa": "PQR1235",
+        "modelo": "Mottu E",
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "IOT"
+        },
+        "dataEntrada": "2025-09-03T12:00:00Z",
+        "dataSaida": "2025-09-08T12:00:00Z"
+      }
+    }
+  ]
+}

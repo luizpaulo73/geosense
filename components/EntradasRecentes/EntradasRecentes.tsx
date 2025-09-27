@@ -1,31 +1,55 @@
 import { FlatList, View, Text, StyleSheet } from "react-native";
-import dados from "../../data/entradas.json";
 import { Link } from "expo-router";
 import { useTheme } from "../../context/ThemeContext";
+import { useState, useEffect } from "react";
 
 export default function EntradasRecentes() {
     const { theme } = useTheme();
+    const [dados, setDados] = useState<Vaga[] | null>(null);
+
+    // Função para fazer o fetch dos dados
+    const fetchEntradas = async () => {
+        try {
+            const response = await fetch('http://10.0.2.2:3000/vagas');
+            const data = await response.json();
+            setDados(data);
+        } catch (error) {
+            console.error("Erro ao buscar as entradas: ", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchEntradas();
+    }, []);
 
     return (
         <View style={style.container}>
             <FlatList
-                style={style.lista} 
+                style={style.lista}
                 data={dados}
                 renderItem={({ item }) => (
-                    <View style={[style.item, { backgroundColor: theme.subBackground }]} key={item.id}>
-                        <View style={{flexDirection: "row", justifyContent: "space-between", width: "95%"}}>
-                            <Text style={[style.title, { color: theme.text }]}>{item.modelo} - id - {item.id}</Text>
-                            <Text style={[style.textCategoria, { color: theme.subText}]}>{item.categoria}</Text>
+                    <View style={[style.item, { backgroundColor: theme.subBackground }]} key={item.moto.id}>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", width: "95%" }}>
+                        <Text style={[style.title, { color: theme.text }]}>
+                            {item.moto.modelo} - {item.moto.id} - {item.idVaga}
+                        </Text>
+                        <Text style={[style.textCategoria, { color: theme.subText }]}>
+                            {item.moto.situacao.tipoProblema}
+                        </Text>
                         </View>
-                        <View style={{flexDirection: "row", justifyContent: "space-between", width: "95%"}}>
-                            <Text style={[style.textEntrada, { color: theme.subText }]}>Entrada: {item.entrada}</Text>
-                            <Link href={"/mottu"} style={style.textDetalhes}>Detalhes</Link>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", width: "95%" }}>
+                        <Text style={[style.textEntrada, { color: theme.subText }]}>
+                            Entrada: {new Date(item.moto.dataEntrada).toLocaleString()}
+                        </Text>
+                        <Link href={"/mottu"} style={style.textDetalhes}>
+                            Detalhes
+                        </Link>
                         </View>
                     </View>
                 )}
-            />   
-        </View> 
-    )
+            />
+        </View>
+    );
 }
 
 const style = StyleSheet.create({
@@ -71,7 +95,7 @@ const style = StyleSheet.create({
         borderWidth: 0.5,
         borderColor: "#94A3B8",
         borderRadius: 100,
-        width: 50,
+        paddingHorizontal: 10,
         height: 20,
         verticalAlign: "middle",
         textAlign: "center",
@@ -81,4 +105,4 @@ const style = StyleSheet.create({
         fontSize: 14,
         fontFamily: "K2D_700Bold",
     }
-})
+});
