@@ -1,27 +1,63 @@
-import { Text, View, Image, StyleSheet, TextInput } from "react-native";
-import { Link } from "expo-router";
+import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useTheme } from "../context/ThemeContext";
+import ErrorText from "../components/ErrorText/ErrorText";
+import { useState } from "react";
+import { useRouter } from "expo-router";
 
 export default function TelaInicial() {
     const { theme } = useTheme();
+    const [login, setLogin] = useState<string>("");
+    const [senha, setSenha] = useState<string>("");
+    const [errorLogin, setErrorLogin] = useState<string>("");
+    const [errorSenha, setErrorSenha] = useState<string>("");
+    const router = useRouter();
+
+    const handleLogin = () => {
+        if (!login) {
+            setErrorLogin("Mínimo de 3 letras!");
+            return;
+        }
+        if (!senha) {
+            setErrorSenha("Senha inválida!");
+            return;
+        }
+        setErrorSenha("");
+        setErrorLogin("");
+        router.push("/dashboard");
+    };
 
     return (
-        <>
-            <View style={[{backgroundColor: theme.background},style.container]}>
-                <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
-                <Text style={[style.welcomeText, { color: theme.text }]}>Bem Vindo</Text>
+        <View style={[{backgroundColor: theme.background}, style.container]}>
+            <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
+            <Text style={[style.welcomeText, { color: theme.text }]}>Bem Vindo</Text>
 
-                <Text style={[style.labelInput, { color: theme.text }]} >Login</Text>
-                <TextInput placeholder="Digite seu Login" style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
+            <Text style={[style.labelInput, { color: theme.text }]} >Login</Text>
+            <TextInput
+                placeholder="Digite seu Login"
+                style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]}
+                placeholderTextColor={theme.subText}
+                value={login}
+                onChangeText={setLogin}
+                autoCapitalize="none"
+                autoCorrect={false}
+            />
+            <ErrorText error={errorLogin && !login ? errorLogin : ""}/>
 
-                <Text style={[style.labelInput, { color: theme.text }]} >Senha</Text>
-                <TextInput placeholder="Digite sua Senha" style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
+            <Text style={[style.labelInput, { color: theme.text }]} >Senha</Text>
+            <TextInput
+                placeholder="Digite sua Senha"
+                style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]}
+                placeholderTextColor={theme.subText}
+                value={senha}
+                onChangeText={setSenha}
+                secureTextEntry
+            />
+            <ErrorText error={errorSenha && !senha ? errorSenha : ""}/>
 
-                <Link href="/dashboard" style={style.btnLogin}>
-                    <Text style={style.btnLoginText}>Entrar</Text>
-                </Link>
-            </View>
-        </>
+            <TouchableOpacity style={style.btnLogin} onPress={handleLogin}>
+                <Text style={style.btnLoginText}>Entrar</Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 
@@ -63,13 +99,14 @@ const style = StyleSheet.create({
         width: "50%",
         height: 40,
         marginTop: 20,
+        justifyContent: "center",
+        alignItems: "center",
     },
     btnLoginText: {
-        flex: 1,
         color: "#000",
         fontSize: 20,
         textAlign: "center",
         fontFamily: "K2D_700Bold",
         textAlignVertical: "center",
     }
-})
+});
