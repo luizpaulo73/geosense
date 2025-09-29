@@ -1,6 +1,6 @@
 [
-    { "label": "Motor", "value": "motor" },
-    { "label": "IOT", "value": "iot" },
-    { "label": "Estrutural", "value": "estrutural" },
-    { "label": "Sem Placa", "value": "semPlaca" }
+    { "label": "Motor", "value": "Motor" },
+    { "label": "IOT", "value": "IOT" },
+    { "label": "Estrutural", "value": "Estrutural" },
+    { "label": "Sem Placa", "value": "Sem Placa" }
 ]
