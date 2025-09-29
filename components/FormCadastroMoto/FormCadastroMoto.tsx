@@ -50,11 +50,11 @@ export default function FormCadastroMoto() {
                     />
                 </View>
             </View>
-            <TextInput placeholder="ABC-1234" style={[style.searchBar, { backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
+            <TextInput placeholder="ABC-1234" style={[style.searchBar, { backgroundColor: theme.subBackground, color: theme.subText }]} placeholderTextColor={theme.subText}/>
             
             {isSelected ? <>
                 <Text style={[style.labelInput, { color: theme.text }]}>Número de Chassi</Text>
-                <TextInput placeholder="XXXYYYYYYZ1234567" style={[style.searchBar, { backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
+                <TextInput placeholder="XXXYYYYYYZ1234567" style={[style.searchBar, { backgroundColor: theme.subBackground, color: theme.subText }]} placeholderTextColor={theme.subText}/>
             </> : null}
 
             <Text style={[style.labelInput, { color: theme.text }]}>Selecione o Problema da Moto</Text>
