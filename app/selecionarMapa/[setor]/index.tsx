@@ -1,20 +1,52 @@
 import Setor from '../../../components/Setor/Setor';
-import { Link, useLocalSearchParams } from 'expo-router';
+import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import BaseTelas from '../../../components/BaseTelas/BaseTelas';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function SelecionarMapa() {
-
-    const { setor } = useLocalSearchParams();
+    const router = useRouter();
+    const { setor, modelo, placa, chassi, problema } = useLocalSearchParams();
     const setorString = Array.isArray(setor) ? setor[0] : setor || '';
 
+    const handleCadastrar = async () => {
+        const novaVaga = {
+            idVaga: "M-" + Math.floor(Math.random() * 1000),
+            ocupada: true,
+            setor: setorString,
+            moto: {
+                id: Date.now().toString(),
+                placa: placa || "",
+                modelo: modelo || "Mottu Sport",
+                chassi: chassi || null,
+                situacao: {
+                    status: "Em Manutenção",
+                    tipoProblema: problema || "Motor",
+                },
+                dataEntrada: new Date().toISOString(),
+                dataSaida: null,
+            },
+        };
+
+        try {
+            await fetch("http://10.0.2.2:3000/vagas", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(novaVaga),
+            });
+            router.push("/dashboard");
+        } catch (error) {
+            console.error("Erro ao cadastrar vaga:", error);
+        }
+    };
+
     return (
-        <BaseTelas titulo='Selecione a Vaga' botaoVoltar="/cadastro">
+        <BaseTelas titulo="Selecione a Vaga" botaoVoltar="/cadastro">
             <View style={style.container}>
-            <Setor area={setorString}/>
-            <Link href="/dashboard" style={style.btnLogin}>
-                <Text style={style.btnLoginText}>Cadastrar</Text>
-            </Link></View>
+                <Setor area={setorString} />
+                <TouchableOpacity style={style.btnLogin} onPress={handleCadastrar}>
+                    <Text style={style.btnLoginText}>Cadastrar</Text>
+                </TouchableOpacity>
+            </View>
         </BaseTelas>
     )
 }

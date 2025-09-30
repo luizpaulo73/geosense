@@ -19,6 +19,9 @@ export default function FormCadastroMoto() {
     const [valueProblema, setValueProblema] = useState(null);
     const [itemsProblema, setItemsProblema] = useState(setores);
 
+    const [placa, setPlaca] = useState("");
+    const [chassi, setChassi] = useState("");
+
     return (
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
             <View style={{flexDirection: "row", alignItems: "center", gap: 5, width: "90%"}}>
@@ -37,8 +40,9 @@ export default function FormCadastroMoto() {
                 textStyle={[style.text, { color: theme.subText }]}
                 zIndex={2000}
             />
+
             <View style={{flexDirection: "row", justifyContent: "space-between", width: "90%"}}>
-                <Text style={[[style.labelInput, { color: theme.text }], {width: "50%"}]}>Placa</Text>
+                <Text style={[[style.labelInput, { color: theme.text }], {width: "50%"}]}>{isSelected? "Número de Chassi" : "Placa"}</Text>
                 <View style={{flexDirection: "row", width: "50%", justifyContent: "flex-end", alignItems: "center"}}>
                    <Text style={[style.semPlacaText, { color: theme.subText }]}>Moto sem Placa</Text>
                    <Checkbox
@@ -50,12 +54,28 @@ export default function FormCadastroMoto() {
                     />
                 </View>
             </View>
-            <TextInput placeholder="ABC-1234" style={[style.searchBar, { backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
             
-            {isSelected ? <>
-                <Text style={[style.labelInput, { color: theme.text }]}>Número de Chassi</Text>
-                <TextInput placeholder="XXXYYYYYYZ1234567" style={[style.searchBar, { backgroundColor: theme.subBackground }]} placeholderTextColor={theme.subText}/>
-            </> : null}
+            {!isSelected && (
+                <TextInput
+                    value={placa}
+                    onChangeText={setPlaca}
+                    placeholder="ABC-1234"
+                    style={[style.searchBar, { backgroundColor: theme.subBackground }]}
+                    placeholderTextColor={theme.subText}
+                />
+            )}
+
+            {isSelected && (
+                <>
+                    <TextInput
+                        value={chassi}
+                        onChangeText={setChassi}
+                        placeholder="XXXYYYYYYZ1234567"
+                        style={[style.searchBar, { backgroundColor: theme.subBackground }]}
+                        placeholderTextColor={theme.subText}
+                    />
+                </>
+            )}
 
             <Text style={[style.labelInput, { color: theme.text }]}>Selecione o Problema da Moto</Text>
             <DropDownPicker
@@ -71,7 +91,19 @@ export default function FormCadastroMoto() {
                 textStyle={[style.text, { color: theme.subText }]}
                 zIndex={1000}
             />
-            <Link href={"/selecionarMapa/Motor"} style={style.btnLogin}>
+            <Link
+                href={{
+                    pathname: "/selecionarMapa/[setor]",
+                    params: {
+                        setor: valueProblema || "Motor Defeituoso",
+                        modelo: valueMoto || "Mottu Sport",
+                        placa,
+                        chassi,
+                        problema: valueProblema || "Motor"
+                    }
+                }}
+                style={style.btnLogin}
+            >
                 <Text style={style.btnLoginText}>Selecionar Vaga</Text>
             </Link>
         </View>

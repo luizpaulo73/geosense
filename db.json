@@ -14,7 +14,8 @@
         },
         "dataEntrada": "2025-09-01T10:00:00Z",
         "dataSaida": "2025-09-05T10:00:00Z"
-      }
+      },
+      "id": "c112"
     },
     {
       "idVaga": "M-12-232",
@@ -30,7 +31,8 @@
         },
         "dataEntrada": "2025-09-01T11:00:00Z",
         "dataSaida": "2025-09-01T12:00:00Z"
-      }
+      },
+      "id": "0a86"
     },
     {
       "idVaga": "M-12-233",
@@ -46,7 +48,8 @@
         },
         "dataEntrada": "2025-09-02T09:30:00Z",
         "dataSaida": "2025-09-06T09:30:00Z"
-      }
+      },
+      "id": "dbed"
     },
     {
       "idVaga": "M-12-234",
@@ -62,7 +65,8 @@
         },
         "dataEntrada": "2025-09-02T14:00:00Z",
         "dataSaida": "2025-09-02T15:00:00Z"
-      }
+      },
+      "id": "9d63"
     },
     {
       "idVaga": "M-12-235",
@@ -78,7 +82,8 @@
         },
         "dataEntrada": "2025-09-03T08:00:00Z",
         "dataSaida": "2025-09-07T08:00:00Z"
-      }
+      },
+      "id": "182e"
     },
     {
       "idVaga": "M-12-236",
@@ -94,6 +99,25 @@
         },
         "dataEntrada": "2025-09-03T12:00:00Z",
         "dataSaida": "2025-09-08T12:00:00Z"
+      },
+      "id": "d7c6"
+    },
+    {
+      "id": "387b",
+      "idVaga": "M-708",
+      "ocupada": true,
+      "setor": "estrutural",
+      "moto": {
+        "id": "1759016020140",
+        "placa": "sadasdsadas",
+        "modelo": "e",
+        "chassi": null,
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "estrutural"
+        },
+        "dataEntrada": "2025-09-27T23:33:40.140Z",
+        "dataSaida": null
       }
     }
   ]
