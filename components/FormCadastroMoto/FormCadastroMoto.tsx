@@ -1,26 +1,83 @@
-import { Link } from "expo-router";
 import { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Image } from "react-native"
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native"
 import DropDownPicker from "react-native-dropdown-picker"
 import { Checkbox } from "react-native-paper";
 import setores from "../../data/options/tipoProblema.json";
 import modelo from "../../data/options/modeloMoto.json";
 import { useTheme } from "../../context/ThemeContext";
+import ErrorText from "../ErrorText/ErrorText";
+import { useRouter } from "expo-router";
 
 export default function FormCadastroMoto() {
     const { theme } = useTheme();
+    const router = useRouter();
 
     const [isSelected, setSelection] = useState(false);
     const [openMoto, setOpenMoto] = useState(false);
     const [valueMoto, setValueMoto] = useState(null);
     const [itemsMoto, setItemsMoto] = useState(modelo);
-    
+
     const [openProblema, setOpenProblema] = useState(false);
     const [valueProblema, setValueProblema] = useState(null);
     const [itemsProblema, setItemsProblema] = useState(setores);
 
     const [placa, setPlaca] = useState("");
     const [chassi, setChassi] = useState("");
+
+    // Estados de erro
+    const [errorPlaca, setErrorPlaca] = useState("");
+    const [errorChassi, setErrorChassi] = useState("");
+    const [errorModelo, setErrorModelo] = useState("");
+    const [errorProblema, setErrorProblema] = useState("");
+
+    const validate = () => {
+        let valid = true;
+        if (!valueMoto) {
+            setErrorModelo("Selecione o modelo");
+            valid = false;
+        } else {
+            setErrorModelo("");
+        }
+        if (!valueProblema) {
+            setErrorProblema("Selecione o problema");
+            valid = false;
+        } else {
+            setErrorProblema("");
+        }
+        if (!isSelected) {
+            if (!placa || placa.length < 7) {
+                setErrorPlaca("Placa inválida!");
+                valid = false;
+            } else {
+                setErrorPlaca("");
+            }
+            setErrorChassi("");
+        } else {
+            if (!chassi || chassi.length < 10) {
+                setErrorChassi("Chassi inválido!");
+                valid = false;
+            } else {
+                setErrorChassi("");
+            }
+            setErrorPlaca("");
+        }
+        return valid;
+    };
+
+    const handleSelecionarVaga = () => {
+        if (validate()) {
+            router.push({
+                pathname: "/selecionarMapa/[setor]",
+                params: {
+                    setor: valueProblema || "Motor Defeituoso",
+                    modelo: valueMoto || "Mottu Sport",
+                    placa,
+                    chassi,
+                    problema: valueProblema || "Motor"
+                }
+            });
+        }
+    };
 
     return (
         <View style={{gap: 10, width: "100%", alignItems: "center"}}>
@@ -40,6 +97,7 @@ export default function FormCadastroMoto() {
                 textStyle={[style.text, { color: theme.subText }]}
                 zIndex={2000}
             />
+            <ErrorText error={errorModelo}/>
 
             <View style={{flexDirection: "row", justifyContent: "space-between", width: "90%"}}>
                 <Text style={[[style.labelInput, { color: theme.text }], {width: "50%"}]}>{isSelected? "Número de Chassi" : "Placa"}</Text>
@@ -54,15 +112,18 @@ export default function FormCadastroMoto() {
                     />
                 </View>
             </View>
-            
+
             {!isSelected && (
-                <TextInput
-                    value={placa}
-                    onChangeText={setPlaca}
-                    placeholder="ABC-1234"
-                    style={[style.searchBar, { backgroundColor: theme.subBackground }]}
-                    placeholderTextColor={theme.subText}
-                />
+                <>
+                    <TextInput
+                        value={placa}
+                        onChangeText={setPlaca}
+                        placeholder="ABC-1234"
+                        style={[style.searchBar, { backgroundColor: theme.subBackground }]}
+                        placeholderTextColor={theme.subText}
+                    />
+                    <ErrorText error={errorPlaca}/>
+                </>
             )}
 
             {isSelected && (
@@ -74,6 +135,7 @@ export default function FormCadastroMoto() {
                         style={[style.searchBar, { backgroundColor: theme.subBackground }]}
                         placeholderTextColor={theme.subText}
                     />
+                    <ErrorText error={errorChassi}/>
                 </>
             )}
 
@@ -91,21 +153,11 @@ export default function FormCadastroMoto() {
                 textStyle={[style.text, { color: theme.subText }]}
                 zIndex={1000}
             />
-            <Link
-                href={{
-                    pathname: "/selecionarMapa/[setor]",
-                    params: {
-                        setor: valueProblema || "Motor Defeituoso",
-                        modelo: valueMoto || "Mottu Sport",
-                        placa,
-                        chassi,
-                        problema: valueProblema || "Motor"
-                    }
-                }}
-                style={style.btnLogin}
-            >
+            <ErrorText error={errorProblema}/>
+
+            <TouchableOpacity style={style.btnLogin} onPress={handleSelecionarVaga}>
                 <Text style={style.btnLoginText}>Selecionar Vaga</Text>
-            </Link>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -149,6 +201,8 @@ const style = StyleSheet.create({
         width: "50%",
         height: 40,
         marginTop: 20,
+        justifyContent: "center",
+        alignItems: "center",
     },
     btnLoginText: {
         flex: 1,
