@@ -3,6 +3,7 @@ import { useTheme } from "../context/ThemeContext";
 import ErrorText from "../components/ErrorText/ErrorText";
 import { useState } from "react";
 import { useRouter } from "expo-router";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function TelaInicial() {
     const { theme } = useTheme();
@@ -10,20 +11,47 @@ export default function TelaInicial() {
     const [senha, setSenha] = useState<string>("");
     const [errorLogin, setErrorLogin] = useState<string>("");
     const [errorSenha, setErrorSenha] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!login) {
-            setErrorLogin("Mínimo de 3 letras!");
+            setErrorLogin("Digite seu e-mail!");
             return;
         }
         if (!senha) {
-            setErrorSenha("Senha inválida!");
+            setErrorSenha("Digite sua senha!");
             return;
         }
-        setErrorSenha("");
         setErrorLogin("");
-        router.push("/dashboard");
+        setErrorSenha("");
+        setLoading(true);
+        try {
+            const BASE_URL = "http://10.0.2.2:5194";
+            const response = await fetch(`${BASE_URL}/api/Usuario/${login}`);
+
+            if (response.status === 404) {
+                setErrorLogin("Usuário não encontrado!");
+                setLoading(false);
+                return;
+            }
+            const user = await response.json();
+            if (user.senha !== senha) {
+                setErrorSenha("Senha incorreta!");
+                setLoading(false);
+                return;
+            }
+            
+            await AsyncStorage.setItem('usuario', JSON.stringify(user));
+            
+            setErrorLogin("");
+            setErrorSenha("");
+            setLoading(false);
+            router.push("/dashboard");
+        } catch (error) {
+            setLoading(false);
+            setErrorLogin("Erro ao conectar ao servidor.");
+        }
     };
 
     return (
@@ -37,11 +65,14 @@ export default function TelaInicial() {
                 style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]}
                 placeholderTextColor={theme.subText}
                 value={login}
-                onChangeText={setLogin}
+                onChangeText={text => {
+                    setLogin(text);
+                    setErrorLogin("");
+                }}
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <ErrorText error={errorLogin && !login ? errorLogin : ""}/>
+            <ErrorText error={errorLogin}/>
 
             <Text style={[style.labelInput, { color: theme.text }]} >Senha</Text>
             <TextInput
@@ -49,13 +80,16 @@ export default function TelaInicial() {
                 style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]}
                 placeholderTextColor={theme.subText}
                 value={senha}
-                onChangeText={setSenha}
+                onChangeText={text => {
+                    setSenha(text);
+                    setErrorSenha("");
+                }}
                 secureTextEntry
             />
-            <ErrorText error={errorSenha && !senha ? errorSenha : ""}/>
+            <ErrorText error={errorSenha}/>
 
-            <TouchableOpacity style={style.btnLogin} onPress={handleLogin}>
-                <Text style={style.btnLoginText}>Entrar</Text>
+            <TouchableOpacity style={style.btnLogin} onPress={handleLogin} disabled={loading}>
+                <Text style={style.btnLoginText}>{loading ? "Entrando..." : "Entrar"}</Text>
             </TouchableOpacity>
         </View>
     )
@@ -101,6 +135,7 @@ const style = StyleSheet.create({
         marginTop: 20,
         justifyContent: "center",
         alignItems: "center",
+        opacity: 1
     },
     btnLoginText: {
         color: "#000",
