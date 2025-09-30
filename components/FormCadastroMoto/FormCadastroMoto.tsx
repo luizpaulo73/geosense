@@ -119,7 +119,7 @@ export default function FormCadastroMoto() {
                         value={placa}
                         onChangeText={setPlaca}
                         placeholder="ABC-1234"
-                        style={[style.searchBar, { backgroundColor: theme.subBackground }]}
+                        style={[style.searchBar, { backgroundColor: theme.subBackground, color: theme.subText }]}
                         placeholderTextColor={theme.subText}
                     />
                     <ErrorText error={errorPlaca}/>
@@ -132,7 +132,7 @@ export default function FormCadastroMoto() {
                         value={chassi}
                         onChangeText={setChassi}
                         placeholder="XXXYYYYYYZ1234567"
-                        style={[style.searchBar, { backgroundColor: theme.subBackground }]}
+                        style={[style.searchBar, { backgroundColor: theme.subBackground, color: theme.subText }]}
                         placeholderTextColor={theme.subText}
                     />
                     <ErrorText error={errorChassi}/>
