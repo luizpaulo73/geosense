@@ -1,5 +1,5 @@
 [
-    { "label": "Mottu Sport", "value": "sport" },
-    { "label": "Mottu Pop", "value": "pop" },
-    { "label": "Mottu E", "value": "e" }
+    { "label": "Mottu Sport", "value": "Mottu Sport" },
+    { "label": "Mottu Pop", "value": "Mottu Pop" },
+    { "label": "Mottu E", "value": "Mottu E" }
 ]

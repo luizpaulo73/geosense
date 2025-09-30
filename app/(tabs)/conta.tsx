@@ -3,6 +3,7 @@ import BaseTelas from "../../components/BaseTelas/BaseTelas";
 import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes";
 import { Link } from "expo-router";
 import { useTheme } from "../../context/ThemeContext";
+import ToggleThemeBtn from "../../components/ToggleThemeBtn/ToggleThemeBtn";
 
 export default function conta() {
     const { theme } = useTheme();
@@ -10,8 +11,11 @@ export default function conta() {
     return (
         <BaseTelas titulo='Conta' botaoVoltar="">
             <View style={[style.infoConta, { backgroundColor: theme.subBackground}]}>
-                <Text style={[style.info, { color: theme.text }]}>João Silva</Text>
-                <Text style={[style.cargo, { color: theme.subText} ]}>Mecanico</Text>
+                <View>
+                    <Text style={[style.info, { color: theme.text }]}>João Silva</Text>
+                    <Text style={[style.cargo, { color: theme.subText} ]}>Mecanico</Text>
+                </View>
+                <ToggleThemeBtn />
             </View>
             <Text style={[style.title, { color: theme.text }]}>Motos a reparar</Text>
             <EntradasRecentes />
@@ -25,6 +29,9 @@ export default function conta() {
 const style = StyleSheet.create({
     infoConta: {
         width: "90%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
         height: 90,
         borderRadius: 5,
         padding: 10,

@@ -13,6 +13,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#020817"
     },
+    "reactNative": {
+      "bridgeless": false
+    },
     "ios": {
       "supportsTablet": true
     },

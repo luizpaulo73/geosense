@@ -1,4 +1,4 @@
 [
-    { "label": "Disponível", "value": "disponivel" },
-    { "label": "Em Manutenção", "value": "manutencao" }
+    { "label": "Disponível", "value": "Disponível" },
+    { "label": "Em Manutenção", "value": "Em Manutenção" }
 ]
