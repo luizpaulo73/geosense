@@ -29,6 +29,8 @@
 
 ## 🚀 Instalação -> API
 
+**Se preferir testar sem a API, selecione 'Login - API offline' para entrar no sistema.**
+
 1. Clone o repositório:
    
    ```bash
