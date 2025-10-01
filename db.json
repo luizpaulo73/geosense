@@ -107,18 +107,7 @@
       "idVaga": "M-708",
       "ocupada": true,
       "setor": "estrutural",
-      "moto": {
-        "id": "1759016020140",
-        "placa": "sadasdsadas",
-        "modelo": "e",
-        "chassi": null,
-        "situacao": {
-          "status": "Em Manutenção",
-          "tipoProblema": "estrutural"
-        },
-        "dataEntrada": "2025-09-27T23:33:40.140Z",
-        "dataSaida": null
-      }
+      "moto": null
     },
     {
       "idVaga": "M-12-240",
