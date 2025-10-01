@@ -62,6 +62,7 @@ export default function Mapa() {
                 <Setor area="IOT" />
                 <Setor area="Motor Defeituoso" />
                 <Setor area="Placa" />
+                <Setor area="estrutural" />
             </ScrollView>
         </BaseTelas>
   )
