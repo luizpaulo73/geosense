@@ -3,6 +3,26 @@ import { Link } from "expo-router";
 import { useTheme } from "../../context/ThemeContext";
 import { useState, useEffect } from "react";
 
+// Defina o tipo Vaga se necessário
+type Vaga = {
+    idVaga: string;
+    ocupada: boolean;
+    setor: string;
+    moto: {
+        id: string;
+        placa: string;
+        modelo: string;
+        situacao: {
+            status: string;
+            tipoProblema: string;
+        };
+        dataEntrada: string;
+        dataSaida: string | null;
+        chassi?: string | null;
+    } | null;
+    id: string;
+};
+
 export default function EntradasRecentes() {
     const { theme } = useTheme();
     const [dados, setDados] = useState<Vaga[] | null>(null);
@@ -12,7 +32,8 @@ export default function EntradasRecentes() {
         try {
             const response = await fetch('http://10.0.2.2:3000/vagas');
             const data = await response.json();
-            setDados(data);
+            // Filtra apenas vagas com moto
+            setDados(data.filter((item: Vaga) => !!item.moto));
         } catch (error) {
             console.error("Erro ao buscar as entradas: ", error);
         }
@@ -28,31 +49,32 @@ export default function EntradasRecentes() {
                 style={style.lista}
                 data={dados}
                 renderItem={({ item }) => (
-                    <View style={[style.item, { backgroundColor: theme.subBackground }]} key={item.moto.id}>
+                    <View style={[style.item, { backgroundColor: theme.subBackground }]} key={item.moto!.id}>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", width: "95%" }}>
-                        <Text style={[style.title, { color: theme.text }]}>
-                            {item.moto.modelo} - {item.moto.id} - {item.idVaga}
-                        </Text>
-                        <Text style={[style.textCategoria, { color: theme.subText }]}>
-                            {item.moto.situacao.tipoProblema}
-                        </Text>
+                            <Text style={[style.title, { color: theme.text }]}>
+                                {item.moto!.modelo} - {item.moto!.id} - {item.idVaga}
+                            </Text>
+                            <Text style={[style.textCategoria, { color: theme.subText }]}>
+                                {item.moto!.situacao.tipoProblema}
+                            </Text>
                         </View>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", width: "95%" }}>
-                        <Text style={[style.textEntrada, { color: theme.subText }]}>
-                            Entrada: {new Date(item.moto.dataEntrada).toLocaleString()}
-                        </Text>
-                        <Link 
-                            href={{
-                                pathname: "/mottu",
-                                params: { moto: JSON.stringify(item.moto) }
-                            }}
-                            style={style.textDetalhes}
-                        >
-                            Detalhes
-                        </Link>
+                            <Text style={[style.textEntrada, { color: theme.subText }]}>
+                                Entrada: {new Date(item.moto!.dataEntrada).toLocaleString()}
+                            </Text>
+                            <Link
+                                href={{
+                                    pathname: "/mottu",
+                                    params: { moto: JSON.stringify(item.moto) }
+                                }}
+                                style={style.textDetalhes}
+                            >
+                                Detalhes
+                            </Link>
                         </View>
                     </View>
                 )}
+                keyExtractor={item => item.moto!.id}
             />
         </View>
     );
