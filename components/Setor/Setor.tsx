@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useTheme } from '../../context/ThemeContext'
 
 type Moto = {
@@ -12,27 +12,27 @@ type Moto = {
   }
   dataEntrada: string
   dataSaida: string
+  chassi?: string | null
 }
 
 type Vaga = {
   idVaga: string
   ocupada: boolean
   setor: string
-  moto: Moto
+  moto: Moto | null
+  id: string
 }
 
-export default function Setor(props: { area: string }) {
-  const { area } = props
+export default function Setor(props: { area: string, onSelecionarVaga?: (id: string) => void, vagaSelecionada?: string }) {
+  const { area, onSelecionarVaga, vagaSelecionada } = props
   const { theme } = useTheme()
-
   const [vagas, setVagas] = useState<Vaga[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function carregarVagas() {
       try {
-        const res = await fetch('http://10.0.2.2:3000/vagas') // Android emulador
-        // no iOS pode usar http://localhost:3000/vagas
+        const res = await fetch('http://10.0.2.2:3000/vagas')
         const data = await res.json()
         setVagas(data)
       } catch (err) {
@@ -41,7 +41,6 @@ export default function Setor(props: { area: string }) {
         setLoading(false)
       }
     }
-
     carregarVagas()
   }, [])
 
@@ -56,22 +55,38 @@ export default function Setor(props: { area: string }) {
           {disponiveis} Disponíveis
         </Text>
       </View>
-
       <View style={style.viewVagas}>
         {loading ? (
           <Text style={{ color: theme.text }}>Carregando...</Text>
         ) : (
-          vagasFiltradas.map(vaga => (
-            <View
-              key={vaga.idVaga}
-              style={[
-                style.vaga,
-                { backgroundColor: vaga.ocupada ? '#FF0000' : '#00CCCF' }
-              ]}
-            >
-              <Text style={style.nrVaga}>{vaga.idVaga}</Text>
-            </View>
-          ))
+          vagasFiltradas.map(vaga => 
+            vaga.ocupada ? (
+              <View
+                key={vaga.id}
+                style={[
+                  style.vaga,
+                  { backgroundColor: '#FF0000', opacity: 0.6 }
+                ]}
+              >
+                <Text style={style.nrVaga}>{vaga.idVaga}</Text>
+              </View>
+            ) : (
+              <TouchableOpacity
+                key={vaga.id}
+                style={[
+                  style.vaga,
+                  { 
+                    backgroundColor: vagaSelecionada === vaga.id ? '#007F80' : '#00CCCF', 
+                    borderWidth: vagaSelecionada === vaga.id ? 2 : 0.5,
+                    borderColor: '#007F80'
+                  }
+                ]}
+                onPress={() => onSelecionarVaga && onSelecionarVaga(vaga.id)}
+              >
+                <Text style={style.nrVaga}>{vaga.idVaga}</Text>
+              </TouchableOpacity>
+            )
+          )
         )}
       </View>
     </View>
@@ -111,7 +126,6 @@ const style = StyleSheet.create({
     gap: 5
   },
   vaga: {
-    backgroundColor: '#FF0000',
     width: 50,
     height: 50,
     borderWidth: 0.5,
