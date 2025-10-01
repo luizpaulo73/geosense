@@ -13,6 +13,8 @@
 
 ### Link do Design: [Figma](https://www.figma.com/design/bUCpf1dUyL4ZcRE0DPgTPP/Geosense?node-id=0-1&t=C2KvD3WNGqhd849p-1)
 
+## Link do APK [Link](https://expo.dev/accounts/luizpaulo73/projects/geosense/builds/56eb9d2d-5d48-4b3b-84c9-d05ee398a219)
+
 ## Descrição do Projeto
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;O GeoSense é um aplicativo mobile desenvolvido com Expo e React Native para auxiliar na gestão inteligente de pátios de motos. A solução oferece registro e localização em tempo real, alocação automática com base em visão computacional e monitoramento completo via mapa interativo, tudo de forma simples e intuitiva. Voltado para mecânicos e gestores, o app permite identificar problemas nas motos, encontrar vagas automaticamente e manter total visibilidade do pátio — direto da palma da mão.
@@ -25,7 +27,45 @@
 - Expo CLI
 - Emulador Android/iOS ou aplicativo **Expo Go**
 
-## 🚀 Instalação
+## 🚀 Instalação -> API
+
+1. Clone o repositório:
+   
+   ```bash
+   git clone https://github.com/MarsoL4/geosense-api.git
+   ```
+
+2. Acesse o diretório:
+
+   ```bash
+   cd geosense-api
+   cd GeoSense-API
+   ```
+
+4. Adicione as credenciais da Oracle no appsettings.json:
+   
+   ```json
+   {
+      "Logging": {
+         "LogLevel": {
+            "Default": "Information",
+            "Microsoft.AspNetCore": "Warning"
+         }
+      },
+      "AllowedHosts": "*",
+      "ConnectionStrings": {
+         "Oracle": "Data Source=oracle.fiap.com.br:1521/ORCL;User ID=rmxxxxx;Password=xxxxx;"
+      }
+   }
+   ```
+
+5. Inicie o projeto:
+   
+   ```bash
+   dotnet run
+   ```
+
+## 🚀 Instalação -> Aplicativo
 
 1. Clone o repositório:
    
