@@ -1,20 +1,25 @@
-import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
-import { useTheme } from "../context/ThemeContext";
-import ErrorText from "../components/ErrorText/ErrorText";
-import { useState } from "react";
-import { useRouter } from "expo-router";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState } from 'react'
+import { View, Image, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { useTheme } from '../../context/ThemeContext';
+import { useRouter } from 'expo-router';
+import ErrorText from '../../components/ErrorText/ErrorText';
 
-export default function TelaInicial() {
+export default function Cadastro() {
     const { theme } = useTheme();
     const [login, setLogin] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
+    const [nome, setNome] = useState<string>("");
     const [errorLogin, setErrorLogin] = useState<string>("");
     const [errorSenha, setErrorSenha] = useState<string>("");
+    const [errorNome, setErrorNome] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    const handleLogin = async () => {
+    const handleCadastro = async () => {
+        if (!nome) {
+            setErrorNome("Digite seu nome!");
+            return;
+        }
         if (!login) {
             setErrorLogin("Digite seu e-mail!");
             return;
@@ -23,45 +28,63 @@ export default function TelaInicial() {
             setErrorSenha("Digite sua senha!");
             return;
         }
+        setErrorNome("");
         setErrorLogin("");
         setErrorSenha("");
         setLoading(true);
+
         try {
             const BASE_URL = "http://10.0.2.2:5194";
-            const response = await fetch(`${BASE_URL}/api/Usuario/${login}`);
+            const novoUsuario = {
+                id: null,
+                nome,
+                email: login,
+                senha,
+                tipo: 0
+            };
+            const response = await fetch(`${BASE_URL}/api/Usuario`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(novoUsuario)
+            });
 
-            if (response.status === 404) {
-                setErrorLogin("Usuário não encontrado!");
-                setLoading(false);
-                return;
+            if (response.ok) {
+                Alert.alert("Sucesso", "Usuário cadastrado com sucesso!");
+                router.push("/");
+            } else {
+                const erro = await response.text();
+                Alert.alert("Erro", erro || "Erro ao cadastrar usuário.");
             }
-            const user = await response.json();
-            if (user.senha !== senha) {
-                setErrorSenha("Senha incorreta!");
-                setLoading(false);
-                return;
-            }
-            
-            await AsyncStorage.setItem('usuario', JSON.stringify(user));
-            
-            setErrorLogin("");
-            setErrorSenha("");
-            setLoading(false);
-            router.push("/dashboard");
         } catch (error) {
+            Alert.alert("Erro", "Erro ao conectar ao servidor.");
+        } finally {
             setLoading(false);
-            setErrorLogin("Erro ao conectar ao servidor.");
         }
     };
 
     return (
         <View style={[{backgroundColor: theme.background}, style.container]}>
-            <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
-            <Text style={[style.welcomeText, { color: theme.text }]}>Bem Vindo</Text>
+            <Image source={require("../../assets/logos/logo.png")} style={style.logo}/>
+            <Text style={[style.welcomeText, { color: theme.text }]}>Cadastro</Text>
 
-            <Text style={[style.labelInput, { color: theme.text }]} >Login</Text>
+            <Text style={[style.labelInput, { color: theme.text }]} >Nome</Text>
             <TextInput
-                placeholder="Digite seu Login"
+                placeholder="Digite seu Nome"
+                style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]}
+                placeholderTextColor={theme.subText}
+                value={nome}
+                onChangeText={text => {
+                    setNome(text);
+                    setErrorNome("");
+                }}
+                autoCapitalize="words"
+                autoCorrect={false}
+            />
+            <ErrorText error={errorNome}/>
+
+            <Text style={[style.labelInput, { color: theme.text }]} >E-mail</Text>
+            <TextInput
+                placeholder="Digite seu E-mail"
                 style={[style.input, { color: theme.text, backgroundColor: theme.subBackground }]}
                 placeholderTextColor={theme.subText}
                 value={login}
@@ -71,6 +94,7 @@ export default function TelaInicial() {
                 }}
                 autoCapitalize="none"
                 autoCorrect={false}
+                keyboardType="email-address"
             />
             <ErrorText error={errorLogin}/>
 
@@ -88,11 +112,8 @@ export default function TelaInicial() {
             />
             <ErrorText error={errorSenha}/>
 
-            <TouchableOpacity style={style.btnLogin} onPress={handleLogin} disabled={loading}>
-                <Text style={style.btnLoginText}>{loading ? "Entrando..." : "Entrar"}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[style.btnLogin, {backgroundColor: "#94A3B8"}]} onPress={() => router.push("/cadastroUsuario")} disabled={loading}>
-                <Text style={style.btnLoginText}>Cadastrar</Text>
+            <TouchableOpacity style={style.btnLogin} onPress={handleCadastro} disabled={loading}>
+                <Text style={style.btnLoginText}>{loading ? "Cadastrando..." : "Cadastrar"}</Text>
             </TouchableOpacity>
         </View>
     )
