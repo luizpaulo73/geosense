@@ -119,6 +119,90 @@
         "dataEntrada": "2025-09-27T23:33:40.140Z",
         "dataSaida": null
       }
+    },
+    {
+      "idVaga": "M-12-240",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": null,
+      "id": "240"
+    },
+    {
+      "idVaga": "M-12-241",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": null,
+      "id": "241"
+    },
+    {
+      "idVaga": "M-12-242",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": null,
+      "id": "242"
+    },
+    {
+      "idVaga": "M-12-243",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": null,
+      "id": "243"
+    },
+    {
+      "idVaga": "M-12-244",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": null,
+      "id": "244"
+    },
+    {
+      "idVaga": "M-12-245",
+      "ocupada": false,
+      "setor": "Motor Defeituoso",
+      "moto": null,
+      "id": "245"
+    },
+    {
+      "idVaga": "P-12-250",
+      "ocupada": false,
+      "setor": "Placa",
+      "moto": null,
+      "id": "250"
+    },
+    {
+      "idVaga": "P-12-251",
+      "ocupada": false,
+      "setor": "Placa",
+      "moto": null,
+      "id": "251"
+    },
+    {
+      "idVaga": "IOT-12-260",
+      "ocupada": false,
+      "setor": "IOT",
+      "moto": null,
+      "id": "260"
+    },
+    {
+      "idVaga": "IOT-12-261",
+      "ocupada": false,
+      "setor": "IOT",
+      "moto": null,
+      "id": "261"
+    },
+    {
+      "idVaga": "EST-12-270",
+      "ocupada": true,
+      "setor": "estrutural",
+      "moto": null,
+      "id": "270"
+    },
+    {
+      "idVaga": "EST-12-271",
+      "ocupada": false,
+      "setor": "estrutural",
+      "moto": null,
+      "id": "271"
     }
   ]
 }
