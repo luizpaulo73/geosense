@@ -2,7 +2,7 @@ import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity, Alert } fro
 import { useTheme } from "../context/ThemeContext";
 import ErrorText from "../components/ErrorText/ErrorText";
 import { useState } from "react";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function TelaInicial() {
@@ -54,6 +54,19 @@ export default function TelaInicial() {
         }
     };
 
+    // FUNÇÃO PARA LOGIN OFFLINE
+    const handleOfflineLogin = async () => {
+        const usuarioDefault = {
+            id: 0,
+            nome: "Usuário Offline",
+            email: "offline@geosense.com",
+            senha: "123456",
+            tipo: 1
+        };
+        await AsyncStorage.setItem('usuario', JSON.stringify(usuarioDefault));
+        router.push("/dashboard");
+    };
+
     return (
         <View style={[{backgroundColor: theme.background}, style.container]}>
             <Image source={require("../assets/logos/logo.png")} style={style.logo}/>
@@ -93,6 +106,9 @@ export default function TelaInicial() {
             </TouchableOpacity>
             <TouchableOpacity style={[style.btnLogin, {backgroundColor: "#94A3B8"}]} onPress={() => router.push("/cadastroUsuario")} disabled={loading}>
                 <Text style={style.btnLoginText}>Cadastrar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[style.btnLogin, {backgroundColor: "#aaa"}]} onPress={handleOfflineLogin} disabled={loading}>
+                <Text style={style.btnLoginText}>Logar - API offline</Text>
             </TouchableOpacity>
         </View>
     )
