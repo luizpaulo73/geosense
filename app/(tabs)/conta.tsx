@@ -4,16 +4,34 @@ import EntradasRecentes from "../../components/EntradasRecentes/EntradasRecentes
 import { Link } from "expo-router";
 import { useTheme } from "../../context/ThemeContext";
 import ToggleThemeBtn from "../../components/ToggleThemeBtn/ToggleThemeBtn";
+import { useEffect, useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Usuario } from "../../types/usuario";
 
-export default function conta() {
+export default function Conta() {
     const { theme } = useTheme();
+    const [usuario, setUsuario] = useState<Usuario | null>(null);
+
+    useEffect(() => {
+        const getUsuario = async () => {
+            const usuarioSalvo = await AsyncStorage.getItem('usuario');
+            if (usuarioSalvo) {
+                setUsuario(JSON.parse(usuarioSalvo));
+            }
+        };
+        getUsuario();
+    }, []);
 
     return (
         <BaseTelas titulo='Conta' botaoVoltar="">
             <View style={[style.infoConta, { backgroundColor: theme.subBackground}]}>
                 <View>
-                    <Text style={[style.info, { color: theme.text }]}>João Silva</Text>
-                    <Text style={[style.cargo, { color: theme.subText} ]}>Mecanico</Text>
+                    <Text style={[style.info, { color: theme.text }]}>
+                        {usuario ? usuario.nome : "Carregando..."}
+                    </Text>
+                    <Text style={[style.cargo, { color: theme.subText} ]}>
+                        {usuario ? (usuario.tipo === 0 ? "Administrador" : usuario.tipo === 1 ? "Mecânico" : "Usuário") : ""}
+                    </Text>
                 </View>
                 <ToggleThemeBtn />
             </View>
