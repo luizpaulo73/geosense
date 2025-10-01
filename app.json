@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Geosense",
-    "slug": "Geosense",
+    "slug": "geosense",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logos/logo.png",
@@ -24,11 +24,20 @@
         "foregroundImage": "./assets/logos/logo.png",
         "backgroundColor": "#020817"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.luizpaulo73.geosense"
     },
     "web": {
       "favicon": "./assets/logos/logo.png"
     },
-    "plugins": ["expo-router", "expo-font"]
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b6ba2ac1-90ea-4f77-bf4e-b3570c384797"
+      }
+    }
   }
 }
