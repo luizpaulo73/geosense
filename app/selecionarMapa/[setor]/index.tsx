@@ -1,50 +1,59 @@
 import Setor from '../../../components/Setor/Setor';
-import { Link, useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import BaseTelas from '../../../components/BaseTelas/BaseTelas';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
+import { useState } from 'react';
 
 export default function SelecionarMapa() {
     const router = useRouter();
     const { setor, modelo, placa, chassi, problema } = useLocalSearchParams();
     const setorString = Array.isArray(setor) ? setor[0] : setor || '';
+    const [vagaSelecionada, setVagaSelecionada] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const handleCadastrar = async () => {
-        const novaVaga = {
-            idVaga: "M-" + Math.floor(Math.random() * 1000),
-            ocupada: true,
-            setor: setorString,
-            moto: {
-                id: Date.now().toString(),
-                placa: placa || "",
-                modelo: modelo || "Mottu Sport",
-                chassi: chassi || null,
-                situacao: {
-                    status: "Em Manutenção",
-                    tipoProblema: problema || "Motor",
-                },
-                dataEntrada: new Date().toISOString(),
-                dataSaida: null,
+        if (!vagaSelecionada) {
+            Alert.alert("Selecione uma vaga disponível primeiro!");
+            return;
+        }
+        setLoading(true);
+        const novaMoto = {
+            id: Date.now().toString(),
+            placa: placa || "",
+            modelo: modelo || "Mottu Sport",
+            chassi: chassi || null,
+            situacao: {
+                status: "Em Manutenção",
+                tipoProblema: problema || "Motor",
             },
+            dataEntrada: new Date().toISOString(),
+            dataSaida: null,
         };
 
         try {
-            await fetch("http://10.0.2.2:3000/vagas", {
-                method: "POST",
+            // Atualize a vaga existente usando o id interno
+            await fetch(`http://10.0.2.2:3000/vagas/${vagaSelecionada}`, {
+                method: "PATCH",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(novaVaga),
+                body: JSON.stringify({
+                    ocupada: true,
+                    moto: novaMoto,
+                }),
             });
             router.push("/dashboard");
         } catch (error) {
-            console.error("Erro ao cadastrar vaga:", error);
+            Alert.alert("Erro ao cadastrar vaga:", String(error));
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <BaseTelas titulo="Selecione a Vaga" botaoVoltar="/cadastro">
             <View style={style.container}>
-                <Setor area={setorString} />
-                <TouchableOpacity style={style.btnLogin} onPress={handleCadastrar}>
-                    <Text style={style.btnLoginText}>Cadastrar</Text>
+                <Setor area={setorString} onSelecionarVaga={setVagaSelecionada} vagaSelecionada={vagaSelecionada || ""} />
+                <TouchableOpacity style={style.btnLogin} onPress={handleCadastrar} disabled={loading}>
+                    <Text style={style.btnLoginText}>{loading ? "Cadastrando..." : "Cadastrar"}</Text>
                 </TouchableOpacity>
             </View>
         </BaseTelas>
@@ -64,6 +73,8 @@ const style = StyleSheet.create({
         width: "50%",
         height: 40,
         marginTop: 20,
+        justifyContent: "center",
+        alignItems: "center"
     },
     btnLoginText: {
         flex: 1,
