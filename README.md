@@ -95,7 +95,13 @@
    npm start
    ```
 
-6.  Escaneie o QR Code com o app Expo Go no celular ou rode no emulador.
+6. Inicie a API mock em um terminal separado
+
+   ```bash
+   npm run api
+   ```
+
+7.  Escaneie o QR Code com o app Expo Go no celular ou rode no emulador.
 
 ## 📦 Tecnologias Utilizadas
 
