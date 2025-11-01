@@ -3,6 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import BaseTelas from '../../../components/BaseTelas/BaseTelas';
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SelecionarMapa() {
     const router = useRouter();
@@ -16,6 +17,7 @@ export default function SelecionarMapa() {
             Alert.alert("Selecione uma vaga disponível primeiro!");
             return;
         }
+
         setLoading(true);
         const novaMoto = {
             id: Date.now().toString(),
@@ -31,17 +33,35 @@ export default function SelecionarMapa() {
         };
 
         try {
-            // Atualize a vaga existente usando o id interno
-            await fetch(`http://10.0.2.2:3000/vagas/${vagaSelecionada}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    ocupada: true,
-                    moto: novaMoto,
-                }),
-            });
-            router.push("/dashboard");
+            const storedData = await AsyncStorage.getItem("vagas");
+            if (storedData) {
+                const parsedData = JSON.parse(storedData); // Parse the data
+                if (parsedData.vagas) {
+                    const vagas = parsedData.vagas;
+
+                    // Encontre a vaga selecionada e atualize
+                    const vagaIndex = vagas.findIndex((vaga: any) => vaga.id === vagaSelecionada);
+                    if (vagaIndex !== -1) {
+                        vagas[vagaIndex] = {
+                            ...vagas[vagaIndex],
+                            ocupada: true,
+                            moto: novaMoto,
+                        };
+
+                        // Salve as alterações de volta no AsyncStorage
+                        await AsyncStorage.setItem("vagas", JSON.stringify({ vagas }));
+                        router.push("/dashboard");
+                    } else {
+                        Alert.alert("Erro", "Vaga selecionada não encontrada.");
+                    }
+                } else {
+                    Alert.alert("Erro", "A estrutura dos dados no AsyncStorage não contém a chave 'vagas'.");
+                }
+            } else {
+                Alert.alert("Erro", "Nenhuma vaga disponível no armazenamento.");
+            }
         } catch (error) {
+            console.error("Erro ao cadastrar vaga:", error);
             Alert.alert("Erro ao cadastrar vaga:", String(error));
         } finally {
             setLoading(false);

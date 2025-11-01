@@ -2,8 +2,8 @@ import { FlatList, View, Text, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 import { useTheme } from "../../context/ThemeContext";
 import { useState, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Defina o tipo Vaga se necessário
 type Vaga = {
     idVaga: string;
     ocupada: boolean;
@@ -27,19 +27,23 @@ export default function EntradasRecentes() {
     const { theme } = useTheme();
     const [dados, setDados] = useState<Vaga[] | null>(null);
 
-    // Função para fazer o fetch dos dados
-    const fetchEntradas = async () => {
-        try {
-            const response = await fetch('http://10.0.2.2:3000/vagas');
-            const data = await response.json();
-            // Filtra apenas vagas com moto
-            setDados(data.filter((item: Vaga) => !!item.moto));
-        } catch (error) {
-            console.error("Erro ao buscar as entradas: ", error);
-        }
-    };
-
     useEffect(() => {
+        async function fetchEntradas() {
+            try {
+                const storedData = await AsyncStorage.getItem("vagas");
+                console.log("Stored Data:", storedData);
+                if (storedData) {
+                    const parsedData = JSON.parse(storedData);
+                    if (parsedData.vagas) {
+                        setDados(parsedData.vagas.filter((item: Vaga) => !!item.moto));
+                    } else {
+                        console.error("Estrutura inesperada no storedData:", parsedData);
+                    }
+                }
+            } catch (error) {
+                console.error("Erro ao buscar as entradas:", error);
+            }
+        }
         fetchEntradas();
     }, []);
 

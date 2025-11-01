@@ -1,11 +1,16 @@
-import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
+import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { useTheme } from "../context/ThemeContext";
 import ErrorText from "../components/ErrorText/ErrorText";
-import { useState } from "react";
-import { Link, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initializeAsyncStorage } from "../utils/initializeAsyncStorage";
 
 export default function TelaInicial() {
+    useEffect(() => {
+        initializeAsyncStorage();
+    }, []);
+
     const { theme } = useTheme();
     const [login, setLogin] = useState<string>("");
     const [senha, setSenha] = useState<string>("");

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { useTheme } from '../../context/ThemeContext'
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTheme } from '../../context/ThemeContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Moto = {
   id: string
@@ -24,25 +25,29 @@ type Vaga = {
 }
 
 export default function Setor(props: { area: string, onSelecionarVaga?: (id: string) => void, vagaSelecionada?: string }) {
-  const { area, onSelecionarVaga, vagaSelecionada } = props
-  const { theme } = useTheme()
-  const [vagas, setVagas] = useState<Vaga[]>([])
-  const [loading, setLoading] = useState(true)
+    const { area, onSelecionarVaga, vagaSelecionada } = props
+    const { theme } = useTheme()
+    const [vagas, setVagas] = useState<Vaga[]>([])
+    const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function carregarVagas() {
       try {
-        const res = await fetch('http://10.0.2.2:3000/vagas')
-        const data = await res.json()
-        setVagas(data)
+        const storedData = await AsyncStorage.getItem('vagas');
+        if (storedData) {
+          const data = JSON.parse(storedData);
+          if (data.vagas) {
+            setVagas(data.vagas);
+          }
+        }
       } catch (err) {
-        console.log('Erro ao carregar vagas:', err)
+        console.error('Erro ao carregar vagas do AsyncStorage:', err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
-    carregarVagas()
-  }, [])
+    carregarVagas();
+  }, []);
 
   const vagasFiltradas = vagas.filter(v => v.setor === area)
   const disponiveis = vagasFiltradas.filter(v => !v.ocupada).length
