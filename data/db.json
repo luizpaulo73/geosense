@@ -132,9 +132,20 @@
     },
     {
       "idVaga": "M-12-243",
-      "ocupada": false,
+      "ocupada": true,
       "setor": "Motor Defeituoso",
-      "moto": null,
+      "moto": {
+        "id": "1759362797196",
+        "placa": "abc1234",
+        "modelo": "Mottu Pop",
+        "chassi": null,
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "Motor Defeituoso"
+        },
+        "dataEntrada": "2025-10-01T23:53:17.197Z",
+        "dataSaida": null
+      },
       "id": "243"
     },
     {
@@ -146,9 +157,20 @@
     },
     {
       "idVaga": "M-12-245",
-      "ocupada": false,
+      "ocupada": true,
       "setor": "Motor Defeituoso",
-      "moto": null,
+      "moto": {
+        "id": "1759355402499",
+        "placa": "CPM-7973",
+        "modelo": "Mottu Sport",
+        "chassi": null,
+        "situacao": {
+          "status": "Em Manutenção",
+          "tipoProblema": "Motor Defeituoso"
+        },
+        "dataEntrada": "2025-10-01T21:50:02.499Z",
+        "dataSaida": null
+      },
       "id": "245"
     },
     {
