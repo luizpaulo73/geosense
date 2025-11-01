@@ -35,11 +35,10 @@ export default function SelecionarMapa() {
         try {
             const storedData = await AsyncStorage.getItem("vagas");
             if (storedData) {
-                const parsedData = JSON.parse(storedData); // Parse the data
+                const parsedData = JSON.parse(storedData);
                 if (parsedData.vagas) {
                     const vagas = parsedData.vagas;
 
-                    // Encontre a vaga selecionada e atualize
                     const vagaIndex = vagas.findIndex((vaga: any) => vaga.id === vagaSelecionada);
                     if (vagaIndex !== -1) {
                         vagas[vagaIndex] = {
@@ -48,7 +47,6 @@ export default function SelecionarMapa() {
                             moto: novaMoto,
                         };
 
-                        // Salve as alterações de volta no AsyncStorage
                         await AsyncStorage.setItem("vagas", JSON.stringify({ vagas }));
                         router.push("/dashboard");
                     } else {

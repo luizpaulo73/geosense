@@ -24,7 +24,6 @@ export default function FormCadastroMoto() {
     const [placa, setPlaca] = useState("");
     const [chassi, setChassi] = useState("");
 
-    // Estados de erro
     const [errorPlaca, setErrorPlaca] = useState("");
     const [errorChassi, setErrorChassi] = useState("");
     const [errorModelo, setErrorModelo] = useState("");
