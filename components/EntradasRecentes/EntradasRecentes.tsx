@@ -31,7 +31,6 @@ export default function EntradasRecentes() {
         async function fetchEntradas() {
             try {
                 const storedData = await AsyncStorage.getItem("vagas");
-                console.log("Stored Data:", storedData);
                 if (storedData) {
                     const parsedData = JSON.parse(storedData);
                     if (parsedData.vagas) {
