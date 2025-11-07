@@ -15,7 +15,7 @@
 
 ## Link do APK [Link](https://expo.dev/accounts/luizpaulo73/projects/geosense/builds/facac853-09e5-4108-98c7-5f07c4c2215b)
 
-## QR Code
+## QR Code (apk)
 
 ![APK](./data/apkLink.png)
 
