@@ -13,7 +13,11 @@
 
 ### Link do Design: [Figma](https://www.figma.com/design/bUCpf1dUyL4ZcRE0DPgTPP/Geosense?node-id=0-1&t=C2KvD3WNGqhd849p-1)
 
-## Link do APK [Link](https://expo.dev/accounts/luizpaulo73/projects/geosense/builds/2fe8242b-c28f-473e-96b4-a111ab2a5a38)
+## Link do APK [Link](https://expo.dev/accounts/luizpaulo73/projects/geosense/builds/facac853-09e5-4108-98c7-5f07c4c2215b)
+
+## QR Code
+
+![APK](./data/apkLink.png)
 
 ## Link Vídeo [Youtube](https://youtu.be/erqK9AmF0Vw)
 
