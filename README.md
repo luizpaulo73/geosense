@@ -19,8 +19,6 @@
 
 ![APK](./data/apkLink.png)
 
-## Link Vídeo [Youtube](https://youtu.be/erqK9AmF0Vw)
-
 ## Descrição do Projeto
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;O GeoSense é um aplicativo mobile desenvolvido com Expo e React Native para auxiliar na gestão inteligente de pátios de motos. A solução oferece registro e localização em tempo real, alocação automática com base em visão computacional e monitoramento completo via mapa interativo, tudo de forma simples e intuitiva. Voltado para mecânicos e gestores, o app permite identificar problemas nas motos, encontrar vagas automaticamente e manter total visibilidade do pátio — direto da palma da mão.
